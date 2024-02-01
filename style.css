@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    font-family: 'Nunito', sans-serif;
+}
+.nav-link {
+    margin: 0 10px;
+    padding: 5px 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}

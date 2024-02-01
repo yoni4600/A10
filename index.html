@@ -6,14 +6,17 @@
     <title>Language Learning Platform</title>
     <!-- Include Tailwind CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel = "stylesheet" href="./style.css">
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-100">
 
     <header class="bg-blue-600 text-white p-4 text-center">
         <h1 class="text-4xl font-bold">Language Learning Platform</h1>
     </header>
 
-    <nav class="bg-blue-500 text-white p-4 text-center">
+    <nav class="bg-blue-500 text-white p-4 text-center flex justify-center">
         <a href="#" class="nav-link">Home</a>
         <a href="#" class="nav-link">Lessons</a>
         <a href="#" class="nav-link">Quizzes</a>
@@ -25,8 +28,8 @@
         <h2 class="text-3xl mb-2">Welcome to our Language Learning Platform!</h2>
         <p class="text-gray-700">Start your journey to fluency with interactive lessons, quizzes, and practice exercises. Connect with native speakers to enhance your language skills.</p>
         
-        <!-- Minor functionality: Start Quiz button -->
-        <button id="startQuizBtn" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 focus:outline-none">
+        <!-- Start Quiz button with enhanced functionality -->
+        <button id="startQuizBtn" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 focus:outline-none transition duration-300">
             Start Quiz
         </button>
     </section>
@@ -36,9 +39,10 @@
     </footer>
 
     <script>
-        // Minor functionality: Alert on clicking the "Start Quiz" button
         document.getElementById('startQuizBtn').addEventListener('click', function() {
-            alert('Starting a quiz!'); // You can replace this with actual quiz logic
+            // Enhanced functionality: Load a quiz section (Placeholder for actual quiz logic)
+            alert('Quiz loading...'); 
+            // Here you can add JavaScript to load quiz questions, manage quiz state, etc.
         });
     </script>
 
