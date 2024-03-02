@@ -3,8 +3,7 @@ export async function getAllLessons(req, res, client) {
         const database = client.db('pilokdb');
         const lessons = database.collection('Lessons');
         const allLessons = await lessons.find({}).toArray();
-        
-        res.send(allLessons);
+        res.json(allLessons);
     } catch (e) {
         res.status(500).send("Error fetching lessons");
         console.error(e);
