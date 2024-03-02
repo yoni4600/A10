@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 
-const uri = "mongodb+srv://yoni4600:Blanco4600@pilokdb.x6xedkb.mongodb.net/";
+const uri = "mongodb+srv://yechezke:123456FF@pilokdb.x6xedkb.mongodb.net/";
 const client = new MongoClient(uri);
 
 export async function connectToDatabase() {
