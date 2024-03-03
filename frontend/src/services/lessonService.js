@@ -1,6 +1,6 @@
 export const fetchLessons = async () => {
     try {
-        const response = await fetch('http://localhost:4000/lessons'); // Add http:// to the URL
+        const response = await fetch('http://localhost:3000/lessons'); // Add http:// to the URL
         const data = await response.json();
         
         // Map the data to the desired format
