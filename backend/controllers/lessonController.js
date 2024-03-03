@@ -9,3 +9,15 @@ export async function getAllLessons(req, res, client) {
         console.error(e);
     }
 }
+
+export async function getLessonById(req,res,client){
+    try {
+        const database = client.db('pilokdb');
+        const lessons = database.collection('Lessons');
+        const lesson = await lessons.findOne({id:req.params.id})
+        res.json(lesson);
+    } catch (e) {
+        res.status(500).send("Error fetching lessons");
+        console.error(e);
+    }
+}

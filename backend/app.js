@@ -6,7 +6,9 @@ import cors from 'cors'; // Use the ES6 import for cors
 export function createApp(client) {
     const app = express();
     app.use(cors())
-
+    app.get('/', (req, res) => {
+        res.send('Welcome to Pilok API !');
+    });
 
     // Use the userRoutes and pass the MongoDB client
     app.use('/lessons', cors(), lessonRoutes(client));
