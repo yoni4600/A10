@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Lessons from './components/lessons/lessons';
 import LessonDetailWrapper from './components/lessons/LessonDetailWrapper';
 import { LessonsProvider } from './contexts/lessonContext';
+import LessonDetail from './components/lessons/LessonDetail';
 
 const App = () => {
   return (

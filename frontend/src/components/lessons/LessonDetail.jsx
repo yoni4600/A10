@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { LessonDetailContext } from '../../contexts/lessonContext';
 
-const LessonDetail = () => {
-  const lessonsDetail = useContext(LessonDetailContext);
+const LessonDetail = ({ lesson }) => {
+  const lessonsDetailContext = useContext(LessonDetailContext);
+  const lessonsDetail = lesson || lessonsDetailContext;
 
   if (!lessonsDetail) {
     return <div>Loading...</div>;
