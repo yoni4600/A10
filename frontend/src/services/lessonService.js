@@ -2,9 +2,7 @@ import { HOST, PORT } from "../config/config";
 
 export const fetchLessons = async () => {
     try {
-      console.log('Host:', HOST);
-      console.log('Port:', PORT);
-      const response = await fetch(`http://${HOST}:${PORT}/lessons`);
+      const response = await fetch(`https://${HOST}:${PORT}/lessons`);
       const data = await response.json();
   
       const mappedData = data.map((lesson) => ({
@@ -23,7 +21,7 @@ export const fetchLessons = async () => {
   
   export const fetchLessonsDetail = async (lessonId) => {
     try {
-      const response = await fetch(`http://${HOST}:${PORT}/lessons/${lessonId}`);
+      const response = await fetch(`https://${HOST}:${PORT}/lessons/${lessonId}`);
       const data = await response.json();
   
       if (!data) {
