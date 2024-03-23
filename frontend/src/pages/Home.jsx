@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
-import Lessons from '../components/lessons/lessons'
 import { LessonsProvider } from '../contexts/lessonContext'
 import { useNavigate} from 'react-router-dom';
-const Home = () => {
 
-    const [isLessons,setLessons] = useState(false)
-    const navigate = useNavigate();
+export const Home = () => {
+  const navigate = useNavigate();
 
-
-    function lessonsClickHandler(){
-        setLessons(true)
-        navigate('/lessons');
-    }
-
+  const handleLessonsClick = () => {
+    navigate('/lessons');
+  };
+  const handleExecisesClick = () => {
+    navigate('/exercises');
+  };
+  const handleQuizzesClick = () => {
+    navigate('/quiezzes');
+  };
+  const handleConnectSpeakersClick = () => {
+    navigate('/ConnectSpeakers');
+  };
   return (
     <main className="flex-1">
         <div className="py-12">
@@ -22,24 +26,21 @@ const Home = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
 
-                        <button className="p-4 border border-gray-200 rounded-lg bg-indigo-600 text-white font-bold text-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150">
+                        <button onClick={handleQuizzesClick} className="p-4 border border-gray-200 rounded-lg bg-indigo-600 text-white font-bold text-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150">
                             Quizzes
                         </button>
 
-                        <button onClick={lessonsClickHandler} className="p-4 border border-gray-200 rounded-lg bg-indigo-600 text-white font-bold text-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150">
+                        <button onClick={handleLessonsClick} className="p-4 border border-gray-200 rounded-lg bg-indigo-600 text-white font-bold text-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150">
                             Lessons
                         </button>
                         
-                        <button className="p-4 border border-gray-200 rounded-lg bg-indigo-600 text-white font-bold text-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150">
+                        <button onClick={handleExecisesClick} className="p-4 border border-gray-200 rounded-lg bg-indigo-600 text-white font-bold text-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150">
                             Exercises
                         </button>
 
-                        <button  className="p-4 border border-gray-200 rounded-lg bg-indigo-600 text-white font-bold text-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150">
+                        <button onClick={handleConnectSpeakersClick} className="p-4 border border-gray-200 rounded-lg bg-indigo-600 text-white font-bold text-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150">
                             Connect with Native Speakers
                         </button>
-                        <LessonsProvider>
-                            {isLessons ? <Lessons/> : null }
-                        </LessonsProvider>
                     </div>
                 </div>
             </div>
@@ -47,5 +48,3 @@ const Home = () => {
     </main>
   );
 };
-
-export default Home;
