@@ -2,7 +2,7 @@ import { HOST, PORT } from "../config/config";
 
 export const fetchExercises = async () => {
     try {
-      const response = await fetch(`http://${HOST}:${PORT}/exercises`);
+      const response = await fetch(`https://${HOST}:${PORT}/exercises`);
       const data = await response.json();
   
       const mappedData = data.map(exercise => ({
@@ -24,7 +24,7 @@ export const fetchExercises = async () => {
 
 export const fetchExerciseDetail = async (exerciseId) => {
   try {
-    const response = await fetch(`http://${HOST}:${PORT}/exercises/${exerciseId}`);
+    const response = await fetch(`https://${HOST}:${PORT}/exercises/${exerciseId}`);
     const data = await response.json();
 
     if (!data) {
