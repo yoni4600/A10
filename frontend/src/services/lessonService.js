@@ -2,6 +2,8 @@ import { HOST, PORT } from "../config/config";
 
 export const fetchLessons = async () => {
     try {
+      console.log('Host:', HOST);
+      console.log('Port:', PORT);
       const response = await fetch(`http://${HOST}:${PORT}/lessons`);
       const data = await response.json();
   
