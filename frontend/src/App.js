@@ -9,6 +9,8 @@ import LessonDetail from './components/lessons/LessonDetail';
 import { ExerciseProvider } from './contexts/exerciseContext';
 import Exercises from './components/exercises/exercises';
 import ExerciseDetailWrapper from './components/exercises/exerciseDetailWrapper';
+import Quizzes from './components/quizzes/quizz';
+import ConnectSpeakers from './components/connectSpeakers/connectSpeakers';
 const App = () => {
   return (
     <Router>
@@ -21,6 +23,8 @@ const App = () => {
             <Route path="/lessons/:id" element={<LessonDetailWrapper />} />
             <Route path="/exercises" element={<Exercises />} />
             <Route path="/exercises/:id" element={<ExerciseDetailWrapper />} />
+            <Route path="/quiezzes" element={<Quizzes />} />
+            <Route path="/ConnectSpeakers" element={<ConnectSpeakers />} />
           </Routes>
         </ExerciseProvider>
       </LessonsProvider>
