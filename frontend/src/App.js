@@ -9,13 +9,15 @@ import LessonDetail from './components/lessons/LessonDetail';
 import { ExerciseProvider } from './contexts/exerciseContext';
 import Exercises from './components/exercises/exercises';
 import ExerciseDetailWrapper from './components/exercises/exerciseDetailWrapper';
-import Quizzes from './components/quizzes/quizz';
+import Quizzes from './components/quizzes/quizzes';
 import ConnectSpeakers from './components/connectSpeakers/connectSpeakers';
+import { QuizzesProvider } from './contexts/quizzesContext';
 const App = () => {
   return (
     <Router>
       <LessonsProvider>
         <ExerciseProvider >
+          <QuizzesProvider>
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -26,6 +28,7 @@ const App = () => {
             <Route path="/quiezzes" element={<Quizzes />} />
             <Route path="/ConnectSpeakers" element={<ConnectSpeakers />} />
           </Routes>
+          </QuizzesProvider>
         </ExerciseProvider>
       </LessonsProvider>
     </Router>
