@@ -7,9 +7,10 @@ async function main() {
     const client = await connectToDatabase();
     const app = createApp(client);
 
-    app.listen(port, () => {
-        console.log(`Server listening at http://localhost:${port}`);
-    });
+    const PORT = process.env.PORT || 4000;
+    app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);;
+    })
 }
 
 main().catch(console.error);
