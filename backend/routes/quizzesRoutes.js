@@ -1,6 +1,6 @@
 import express from 'express';
 import { getAllQuiezzes } from '../controllers/quizzesController.js';
-
+import { getQuizById } from '../controllers/quizzesController.js';
 const router = express.Router();
 
 export function quizzesRoutes(client) {

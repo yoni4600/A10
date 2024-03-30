@@ -4,8 +4,8 @@ import { QuizzesContext } from "../../contexts/quizzesContext";
 
 const Quizzes = () => {
     const quizzes = useContext(QuizzesContext);
-    console.log("quizzes" , quizzes)
     const navigate = useNavigate();
+
     const handleQuizClick = (quiz) => {
         navigate(`/quizzes/${quiz.id}`, { state: { quiz } });
     };
@@ -22,8 +22,10 @@ const Quizzes = () => {
                                         className="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center transition-colors duration-200"
                                         onClick={() => handleQuizClick(quiz)}
                                     >
-                                        {quiz.difficulty}
+                                        <div>{quiz.name}</div>
+                                        <div>{quiz.difficulty}</div>
                                     </div>
+                                    
                                 ))}
                             </div>
                         </div>

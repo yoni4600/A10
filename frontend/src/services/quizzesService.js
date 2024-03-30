@@ -2,19 +2,17 @@ import { HOST, PORT } from "../config/config";
 
 export const fetchQuizzes = async () => {
     try {
-      console.log("1")
-      const response = await fetch(`https://${HOST}:${PORT}/quizzes`);
-      console.log("2")
+      const response = await fetch(`http://localhost:4000/quizzes`);
       const data = await response.json();
-      console.log("3")
   
       const mappedData = data.map((quiz) => ({
         id: quiz._id,
+        name: quiz.name,
         difficulty: quiz.difficulty,
         questions: quiz.questions,
+        answers: quiz.answers,
+        description: quiz.description
       }));
-      console.log("4")
-      console.log("mappedData",mappedData)
       return mappedData;
     } catch (error) {
       console.error('Error fetching quizzes:', error);
@@ -24,7 +22,7 @@ export const fetchQuizzes = async () => {
   
   export const fetchQuizzesDetail = async (quizId) => {
     try {
-      const response = await fetch(`https://${HOST}:${PORT}/quizzes/${quizId}`);
+      const response = await fetch(`http://localhost:4000/quizzes/${quizId}`);
       const data = await response.json();
   
       if (!data) {
@@ -34,8 +32,11 @@ export const fetchQuizzes = async () => {
   
       const mappedData = {
         id: data._id,
+        name: data.name,
         difficulty: data.difficulty,
         questions: data.questions,
+        answers: data.answers,
+        description: data.description
       };
       return mappedData;
     } catch (error) {

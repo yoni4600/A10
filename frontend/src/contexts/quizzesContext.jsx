@@ -8,9 +8,7 @@ export const QuizzesProvider = (props) => {
   const [quizzes, setQuizzes] = useState([]);
   useEffect(() => {
     const fetchQuizzesData = async () => {
-      console.log("bbbbbbb")
       const fetchedQuizzes = await fetchQuizzes();
-      console.log("aaaaaaa")
       setQuizzes(fetchedQuizzes);
     };
     fetchQuizzesData();
@@ -20,6 +18,7 @@ export const QuizzesProvider = (props) => {
 };
 
 export const QuizDetailProvider = (props) => { // Note the uppercase 'Q' in QuizDetailProvider
+
   const [quizzesDetail, setQuizzesDetail] = useState({});
   const { quizId } = props;
   

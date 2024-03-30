@@ -10,7 +10,6 @@ const client = new MongoClient(uri);
 export async function connectToDatabase() {
     try {
         await client.connect();
-        console.error("connected to lior db");
         return client;
     } catch (e) {
         console.error("Could not connect to MongoDB", e);
