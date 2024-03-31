@@ -1,4 +1,4 @@
-import { HOST, PORT } from "../config/config";
+//import { HOST, PORT } from "../config/config";
 
 export const fetchQuizzes = async () => {
     try {

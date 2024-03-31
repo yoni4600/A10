@@ -1,4 +1,3 @@
-import React, { useContext } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { QuizDetailProvider } from '../../contexts/quizzesContext';
 import QuizDetail from './quizDetail';

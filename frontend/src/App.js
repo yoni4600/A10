@@ -11,7 +11,6 @@ import Exercises from './components/exercises/exercises';
 import ExerciseDetailWrapper from './components/exercises/exerciseDetailWrapper';
 import QuizDetailWrapper from './components/quizzes/quizDetailWrapper';
 import Quizzes from './components/quizzes/quizzes';
-import QuizDetail from './components/quizzes/quizDetail';
 import ConnectSpeakers from './components/connectSpeakers/connectSpeakers';
 import { QuizzesProvider } from './contexts/quizzesContext';
 const App = () => {
@@ -28,7 +27,7 @@ const App = () => {
             <Route path="/lessons/:id" element={<LessonDetailWrapper />} />
             <Route path="/exercises" element={<Exercises />} />
             <Route path="/exercises/:id" element={<ExerciseDetailWrapper />} />
-            <Route path="/quiezzes" element={<Quizzes />} />
+            <Route path="/quizzes" element={<Quizzes />} />
             <Route path="/quizzes/:id" element={<QuizDetailWrapper />} />
             <Route path="/ConnectSpeakers" element={<ConnectSpeakers />} />
           </Routes>

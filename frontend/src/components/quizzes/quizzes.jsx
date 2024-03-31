@@ -23,9 +23,7 @@ const Quizzes = () => {
                                         onClick={() => handleQuizClick(quiz)}
                                     >
                                         <div>{quiz.name}</div>
-                                        <div>{quiz.difficulty}</div>
                                     </div>
-                                    
                                 ))}
                             </div>
                         </div>

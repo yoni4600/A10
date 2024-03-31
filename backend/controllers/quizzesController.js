@@ -19,7 +19,7 @@ export async function getQuizById(req, res, client) {
         const queizzes = database.collection('Quizzes');
 
         // Convert the string ID to ObjectId
-        const objectId = new ObjectId(quizId);
+        const objectId = new (quizId);
 
         // Find the lesson by ID
         const quiz = await queizzes.findOne({ _id: objectId });

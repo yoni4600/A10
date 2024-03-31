@@ -6,7 +6,6 @@ import cors from 'cors'; // Use the ES6 import for cors
 import { lessonRoutes } from './routes/lessonRoutes.js';
 import { exerciseRoutes } from './routes/exerciseRoutes.js';
 import { quizzesRoutes } from './routes/quizzesRoutes.js';
-import cors from 'cors'; // Use the ES6 import for cors
 
 // Passport session setup.
 passport.serializeUser((user, done) => done(null, user));
