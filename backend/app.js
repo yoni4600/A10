@@ -5,6 +5,8 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import cors from 'cors'; // Use the ES6 import for cors
 import { lessonRoutes } from './routes/lessonRoutes.js';
 import { exerciseRoutes } from './routes/exerciseRoutes.js';
+import { quizzesRoutes } from './routes/quizzesRoutes.js';
+import cors from 'cors'; // Use the ES6 import for cors
 
 // Passport session setup.
 passport.serializeUser((user, done) => done(null, user));
@@ -59,9 +61,9 @@ export function createApp(client) {
       }
     );
 
-    // Use the lessonRoutes and exerciseRoutes, pass the MongoDB client
-    app.use('/lessons', lessonRoutes(client));
-    app.use('/exercises', exerciseRoutes(client));
+    app.use('/lessons', cors(), lessonRoutes(client));
+    app.use('/exercises', cors(), exerciseRoutes(client))
+    app.use('/quizzes', cors(), quizzesRoutes(client))
 
     return app;
 }
