@@ -1,13 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 const Navbar = () => {
-
   const navigate = useNavigate();
 
-  function logoutHandler(){
+  function logoutHandler() {
     navigate('/');
+  }
+
+  function returnHandler() {
+    navigate(-1);
   }
 
   return (
@@ -19,6 +21,9 @@ const Navbar = () => {
           {/* <img src="../pngs/pilok.png" alt="Pillow Talk Logo" className="h-12 w-auto mr-6" /> */}
           <button onClick={logoutHandler} className="text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
             Logout
+          </button>
+          <button onClick={returnHandler} className="text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+            Return
           </button>
         </div>
       </div>
