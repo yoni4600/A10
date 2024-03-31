@@ -1,6 +1,8 @@
 import express from 'express';
 import { lessonRoutes } from './routes/lessonRoutes.js';
 import { exerciseRoutes } from './routes/exerciseRoutes.js';
+import { nativeSpeakerRoutes } from './routes/nativeSpeakerRoutes.js';
+
 import cors from 'cors'; // Use the ES6 import for cors
 
 export function createApp(client) {
@@ -13,5 +15,6 @@ export function createApp(client) {
     // Use the userRoutes and pass the MongoDB client
     app.use('/lessons', cors(), lessonRoutes(client));
     app.use('/exercises', cors(), exerciseRoutes(client))
+    app.use('/nativeSpeakers', cors(), nativeSpeakerRoutes(client))
     return app;
 }

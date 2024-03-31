@@ -15,7 +15,7 @@ export const Home = () => {
     navigate('/quiezzes');
   };
   const handleConnectSpeakersClick = () => {
-    navigate('/ConnectSpeakers');
+    navigate('/nativeSpeakers');
   };
   return (
     <main className="flex-1">
