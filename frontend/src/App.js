@@ -9,9 +9,11 @@ import { LessonsProvider } from './contexts/lessonContext';
 import { ExerciseProvider } from './contexts/exerciseContext';
 import Exercises from './components/exercises/exercises';
 import ExerciseDetailWrapper from './components/exercises/exerciseDetailWrapper';
+import NativeSpeakers from './components/nativeSpeakers/nativeSpeakers';
+import { NativeSpeakersProvider } from './contexts/nativeSpeakerContext';
+import NativeSpeakerDetailWrapper from './components/nativeSpeakers/NativeSpeakerDetailWrapper';
 import QuizDetailWrapper from './components/quizzes/quizDetailWrapper';
 import Quizzes from './components/quizzes/quizzes';
-import ConnectSpeakers from './components/connectSpeakers/connectSpeakers';
 import { QuizzesProvider } from './contexts/quizzesContext';
 
 const AppWrapper = () => {
@@ -30,6 +32,7 @@ const App = () => {
     <LessonsProvider>
       <ExerciseProvider>
         <QuizzesProvider>
+         <NativeSpeakersProvider >
           {location.pathname !== "/" && <Navbar />}
           <Routes>
             <Route path="/" element={<Login />} />
@@ -41,7 +44,10 @@ const App = () => {
             <Route path="/quizzes" element={<Quizzes />} />
             <Route path="/quizzes/:id" element={<QuizDetailWrapper />} />
             <Route path="/ConnectSpeakers" element={<ConnectSpeakers />} />
+            <Route path="/nativeSpeakers" element={<NativeSpeakers />} />
+            <Route path="/nativeSpeakers/:id" element={<NativeSpeakerDetailWrapper />} />
           </Routes>
+         </NativeSpeakersProvider>
         </QuizzesProvider>
       </ExerciseProvider>
     </LessonsProvider>
