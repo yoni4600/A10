@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-import { LessonsProvider } from '../contexts/lessonContext'
 import { useNavigate} from 'react-router-dom';
 
 export const Home = () => {
@@ -8,11 +6,11 @@ export const Home = () => {
   const handleLessonsClick = () => {
     navigate('/lessons');
   };
-  const handleExecisesClick = () => {
+  const handleExercisesClick = () => {
     navigate('/exercises');
   };
   const handleQuizzesClick = () => {
-    navigate('/quiezzes');
+    navigate('/quizzes');
   };
   const handleConnectSpeakersClick = () => {
     navigate('/ConnectSpeakers');
@@ -34,7 +32,7 @@ export const Home = () => {
                             Lessons
                         </button>
                         
-                        <button onClick={handleExecisesClick} className="p-4 border border-gray-200 rounded-lg bg-indigo-600 text-white font-bold text-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150">
+                        <button onClick={handleExercisesClick} className="p-4 border border-gray-200 rounded-lg bg-indigo-600 text-white font-bold text-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150">
                             Exercises
                         </button>
 
