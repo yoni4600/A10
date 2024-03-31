@@ -43,7 +43,6 @@ const App = () => {
             <Route path="/exercises/:id" element={<ExerciseDetailWrapper />} />
             <Route path="/quizzes" element={<Quizzes />} />
             <Route path="/quizzes/:id" element={<QuizDetailWrapper />} />
-            <Route path="/ConnectSpeakers" element={<ConnectSpeakers />} />
             <Route path="/nativeSpeakers" element={<NativeSpeakers />} />
             <Route path="/nativeSpeakers/:id" element={<NativeSpeakerDetailWrapper />} />
           </Routes>
