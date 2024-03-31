@@ -20,8 +20,7 @@ export const Home = () => {
         <div className="py-12">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div className="bg-white p-6 rounded-xl shadow-xl">
-                    <h2 className="text-xl font-semibold text-gray-800 mb-4">Dashboard</h2>
-
+                  <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center">Hi! Enjoy of your studying</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
 
                         <button onClick={handleQuizzesClick} className="p-4 border border-gray-200 rounded-lg bg-indigo-600 text-white font-bold text-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150">
