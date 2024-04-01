@@ -23,14 +23,14 @@ export const validateToken = async (token) => {
   }
 };
 
-export const fetchRegister = async (username, password) => {
+export const fetchRegister = async (username, password, userType, country, language, description, zoomLink) => {
   try {
     const response = await fetch(`http://${HOST}:${PORT}/user/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ username, password, userType, country, language, description, zoomLink}),
     });
 
     const data = await response.json();
