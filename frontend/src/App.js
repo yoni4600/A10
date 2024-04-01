@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState } from 'react';
 import Navbar from './components/Navbar';
 import { Home } from './pages/Home';
 import { Login } from './pages/Login';
@@ -15,6 +15,8 @@ import NativeSpeakerDetailWrapper from './components/nativeSpeakers/NativeSpeake
 import QuizDetailWrapper from './components/quizzes/quizDetailWrapper';
 import Quizzes from './components/quizzes/quizzes';
 import { QuizzesProvider } from './contexts/quizzesContext';
+import DarkModeToggle from './components/darkMode/Toggle'; // Adjusted import statement
+
 
 const AppWrapper = () => {
   return (
@@ -27,12 +29,20 @@ const AppWrapper = () => {
 const App = () => {
   // Hook to get the current location
   const location = useLocation();
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+const toggleDarkMode = () => {
+  setIsDarkMode(!isDarkMode);
+  document.documentElement.classList.toggle("dark");
+};
+
 
   return (
     <LessonsProvider>
       <ExerciseProvider>
         <QuizzesProvider>
          <NativeSpeakersProvider >
+          <DarkModeToggle toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
           {location.pathname !== "/" && <Navbar />}
           <Routes>
             <Route path="/" element={<Login />} />

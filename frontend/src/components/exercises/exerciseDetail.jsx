@@ -42,12 +42,12 @@ const ExerciseDetail = ({ exercise }) => {
           rel="stylesheet"
         />
       </head>
-      <body className="bg-gradient-to-r from-blue-200 to-purple-300">
+      <body className="bg-customBackground">
         <div className="flex flex-col min-h-screen">
           <main className="flex-1">
             <div className="py-12">
               <div className="max-w-4xl mx-auto sm:px-6 lg:px-8">
-                <div className="bg-white p-6 rounded-xl shadow-xl">
+                <div className="bg-customDiv p-6 rounded-xl shadow-xl">
                   <h2 className="text-xl font-semibold mb-4">{mappedData.name}</h2>
                   <p className="text-gray-700 mb-4">{mappedData.description}</p>
                   <h3 className="text-lg font-semibold mb-2">Exercise Questions</h3>
@@ -72,7 +72,7 @@ const ExerciseDetail = ({ exercise }) => {
                   ))}
                   <button 
                     type="button" 
-                    className="mt-4 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" 
+                    className="mt-4 text-white bg-customSubmmit hover:bg-customSubmmitHover focus:ring-4 focus:ring-customSubmmitHover font-medium rounded-lg text-sm px-5 py-2.5 text-center" 
                     onClick={checkAnswers}
                   >
                     Check Answers
