@@ -4,11 +4,12 @@ import { fetchRegister } from '../../services/authService';
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [userType, setUserType] = useState('');
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const { response, data } = await fetchRegister(username, password);
+      const { response, data } = await fetchRegister(username, password, userType);
       if (response.ok) {
         console.log('Registration successful');
         // Handle success as needed, e.g., redirect
@@ -33,6 +34,14 @@ const Register = () => {
         <div>
           <label>Password:</label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </div>
+        <div>
+          <label>User Type:</label>
+          <select value={userType} onChange={(e) => setUserType(e.target.value)}>
+            <option value="Regular">Regular</option>
+            <option value="NativeSpeaker">NativeSpeaker</option>
+            {/* Add more user types if needed */}
+          </select>
         </div>
         <button type="submit">Register</button>
       </form>

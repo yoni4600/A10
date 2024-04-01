@@ -23,7 +23,7 @@ export async function loginUser(req, res, client) {
         }
 
         // Generate JWT token
-        const token = jwt.sign({ username: user.username }, "blabla", { expiresIn: '1h' });
+        const token = jwt.sign({ username: user.username, userType: user.userType }, "blabla", { expiresIn: '1h' });
 
         res.cookie('token', token);
         if (req.body.rememberMe) {
@@ -40,7 +40,7 @@ export async function loginUser(req, res, client) {
 
 export async function registerUser(req, res, client) {
     try {
-        const { username, password } = req.body;
+        const { username, password, userType } = req.body;
         console.log('User logged in successfully');
         const database = client.db('pilokdb');
         const usersCollection = database.collection('users');
@@ -58,7 +58,8 @@ export async function registerUser(req, res, client) {
         // Create a new user object
         const newUser = {
             username,
-            password: hashedPassword
+            password: hashedPassword,
+            userType: userType
         };
 
         // Insert the new user into the database
