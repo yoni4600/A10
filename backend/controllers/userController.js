@@ -40,7 +40,7 @@ export async function loginUser(req, res, client) {
 
 export async function registerUser(req, res, client) {
     try {
-        const { username, password, userType } = req.body;
+        const { username, password, userType, country, language, description, zoomLink } = req.body;
         console.log('User logged in successfully');
         const database = client.db('pilokdb');
         const usersCollection = database.collection('users');
@@ -54,14 +54,25 @@ export async function registerUser(req, res, client) {
 
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
-
+        
         // Create a new user object
-        const newUser = {
+        let newUser = {
             username,
             password: hashedPassword,
             userType: userType
         };
 
+        // If user type is "NativeSpeaker", add additional attributes
+        if (userType === 'NativeSpeaker') {
+            console.log('User type is NativeSpeaker'); // Add this logging statement
+            newUser = {
+                ...newUser,
+                country,
+                language,
+                description,
+                zoomLink
+            };
+        }
         // Insert the new user into the database
         await usersCollection.insertOne(newUser);
 
