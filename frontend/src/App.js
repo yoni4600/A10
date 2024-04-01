@@ -18,6 +18,9 @@ import { PrivateRoute } from './components/auth/privateRoute';
 import { useCookies } from 'react-cookie';
 import { validateToken } from './services/authService';
 import DarkModeToggle from './components/darkMode/Toggle';
+import { NativeSpeakersProvider } from './contexts/nativeSpeakerContext';
+import NativeSpeakers from './components/nativeSpeakers/nativeSpeakers';
+import NativeSpeakerDetailWrapper from './components/nativeSpeakers/NativeSpeakerDetailWrapper';
 
 const App = () => {
   const [cookies] = useCookies(['token']);
@@ -48,26 +51,30 @@ const App = () => {
 
   return (
     <Router>
-      <LessonsProvider>
-        <ExerciseProvider >
-          <QuizzesProvider>
-          <DarkModeToggle toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/Home" element={<PrivateRoute isLoggedIn={authenticated}><Home /></PrivateRoute>} />
-            <Route path="/lessons" element={<PrivateRoute isLoggedIn={authenticated}><Lessons /></PrivateRoute>} />
-            <Route path="/lessons/:id" element={<PrivateRoute isLoggedIn={authenticated}><LessonDetailWrapper /></PrivateRoute>} />
-            <Route path="/exercises" element={<PrivateRoute isLoggedIn={authenticated}><Exercises /></PrivateRoute>} />
-            <Route path="/exercises/:id" element={<PrivateRoute isLoggedIn={authenticated}><ExerciseDetailWrapper /></PrivateRoute>} />
-            <Route path="/quiezzes" element={<PrivateRoute isLoggedIn={authenticated}><Quizzes /></PrivateRoute>} />
-            <Route path="/quizzes/:id" element={<PrivateRoute isLoggedIn={authenticated}><QuizDetailWrapper /></PrivateRoute>} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<LoginRoute />} />
-          </Routes>
-          </QuizzesProvider>
-        </ExerciseProvider>
-      </LessonsProvider>
+      <NativeSpeakersProvider>
+        <LessonsProvider>
+          <ExerciseProvider >
+            <QuizzesProvider>
+            <DarkModeToggle toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="/Home" element={<PrivateRoute isLoggedIn={authenticated}><Home /></PrivateRoute>} />
+              <Route path="/lessons" element={<PrivateRoute isLoggedIn={authenticated}><Lessons /></PrivateRoute>} />
+              <Route path="/lessons/:id" element={<PrivateRoute isLoggedIn={authenticated}><LessonDetailWrapper /></PrivateRoute>} />
+              <Route path="/exercises" element={<PrivateRoute isLoggedIn={authenticated}><Exercises /></PrivateRoute>} />
+              <Route path="/exercises/:id" element={<PrivateRoute isLoggedIn={authenticated}><ExerciseDetailWrapper /></PrivateRoute>} />
+              <Route path="/quiezzes" element={<PrivateRoute isLoggedIn={authenticated}><Quizzes /></PrivateRoute>} />
+              <Route path="/quizzes/:id" element={<PrivateRoute isLoggedIn={authenticated}><QuizDetailWrapper /></PrivateRoute>} />
+              <Route path="/nativeSpeakers" element={<PrivateRoute isLoggedIn={authenticated}><NativeSpeakers /></PrivateRoute>} />
+              <Route path="/nativeSpeakers/:id" element={<PrivateRoute isLoggedIn={authenticated}><NativeSpeakerDetailWrapper /></PrivateRoute>} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<LoginRoute />} />
+            </Routes>
+            </QuizzesProvider>
+          </ExerciseProvider>
+        </LessonsProvider>
+      </NativeSpeakersProvider>
     </Router>
   );
 };
