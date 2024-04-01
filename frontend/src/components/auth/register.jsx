@@ -5,11 +5,15 @@ const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [userType, setUserType] = useState('');
+  const [country, setCountry] = useState('');
+  const [language, setLanguage] = useState('');
+  const [description, setDescription] = useState('');
+  const [zoomLink, setZoomLink] = useState('');
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const { response, data } = await fetchRegister(username, password, userType);
+      const { response, data } = await fetchRegister(username, password, userType, country, language, description, zoomLink);
       if (response.ok) {
         console.log('Registration successful');
         // Handle success as needed, e.g., redirect
@@ -22,6 +26,27 @@ const Register = () => {
       alert('An error occurred while registering');
     }
   };
+
+  const additionalOptions = userType === 'NativeSpeaker' && (
+    <div>
+      <div>
+        <label>Country:</label>
+        <input type="text" value={country} onChange={(e) => setCountry(e.target.value)} />
+      </div>
+      <div>
+        <label>Language:</label>
+        <input type="text" value={language} onChange={(e) => setLanguage(e.target.value)} />
+      </div>
+      <div>
+        <label>Description:</label>
+        <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+      </div>
+      <div>
+        <label>Zoom Link:</label>
+        <input type="text" value={zoomLink} onChange={(e) => setZoomLink(e.target.value)} />
+      </div>
+    </div>
+  );
 
   return (
     <div>
@@ -43,6 +68,7 @@ const Register = () => {
             {/* Add more user types if needed */}
           </select>
         </div>
+        {additionalOptions}
         <button type="submit">Register</button>
       </form>
     </div>
