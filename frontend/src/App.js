@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import { Home } from './pages/Home';
 import { Login } from './pages/Login';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Lessons from './components/lessons/lessons';
 import LessonDetailWrapper from './components/lessons/LessonDetailWrapper';
 import { LessonsProvider } from './contexts/lessonContext';
@@ -48,6 +48,29 @@ const App = () => {
       setAuthenticated(false);
     }
   }, [cookies.token]);
+  
+  const Layout = () => {
+    const location = useLocation();
+    return (
+      <>
+        {location.pathname !== "/" && <Navbar />}
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<PrivateRoute isLoggedIn={authenticated}><Home /></PrivateRoute>} />
+          <Route path="/lessons" element={<PrivateRoute isLoggedIn={authenticated}><Lessons /></PrivateRoute>} />
+          <Route path="/lessons/:id" element={<PrivateRoute isLoggedIn={authenticated}><LessonDetailWrapper /></PrivateRoute>} />
+          <Route path="/exercises" element={<PrivateRoute isLoggedIn={authenticated}><Exercises /></PrivateRoute>} />
+          <Route path="/exercises/:id" element={<PrivateRoute isLoggedIn={authenticated}><ExerciseDetailWrapper /></PrivateRoute>} />
+          <Route path="/quizzes" element={<PrivateRoute isLoggedIn={authenticated}><Quizzes /></PrivateRoute>} />
+          <Route path="/quizzes/:id" element={<PrivateRoute isLoggedIn={authenticated}><QuizDetailWrapper /></PrivateRoute>} />
+          <Route path="/nativeSpeakers" element={<PrivateRoute isLoggedIn={authenticated}><NativeSpeakers /></PrivateRoute>} />
+          <Route path="/nativeSpeakers/:id" element={<PrivateRoute isLoggedIn={authenticated}><NativeSpeakerDetailWrapper /></PrivateRoute>} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<LoginRoute />} />
+        </Routes>
+      </>
+    );
+  };
 
   return (
     <Router>
@@ -56,21 +79,7 @@ const App = () => {
           <ExerciseProvider >
             <QuizzesProvider>
             <DarkModeToggle toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="/Home" element={<PrivateRoute isLoggedIn={authenticated}><Home /></PrivateRoute>} />
-              <Route path="/lessons" element={<PrivateRoute isLoggedIn={authenticated}><Lessons /></PrivateRoute>} />
-              <Route path="/lessons/:id" element={<PrivateRoute isLoggedIn={authenticated}><LessonDetailWrapper /></PrivateRoute>} />
-              <Route path="/exercises" element={<PrivateRoute isLoggedIn={authenticated}><Exercises /></PrivateRoute>} />
-              <Route path="/exercises/:id" element={<PrivateRoute isLoggedIn={authenticated}><ExerciseDetailWrapper /></PrivateRoute>} />
-              <Route path="/quiezzes" element={<PrivateRoute isLoggedIn={authenticated}><Quizzes /></PrivateRoute>} />
-              <Route path="/quizzes/:id" element={<PrivateRoute isLoggedIn={authenticated}><QuizDetailWrapper /></PrivateRoute>} />
-              <Route path="/nativeSpeakers" element={<PrivateRoute isLoggedIn={authenticated}><NativeSpeakers /></PrivateRoute>} />
-              <Route path="/nativeSpeakers/:id" element={<PrivateRoute isLoggedIn={authenticated}><NativeSpeakerDetailWrapper /></PrivateRoute>} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<LoginRoute />} />
-            </Routes>
+              <Layout />
             </QuizzesProvider>
           </ExerciseProvider>
         </LessonsProvider>
