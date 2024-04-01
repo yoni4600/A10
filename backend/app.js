@@ -5,8 +5,10 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import cors from 'cors'; // Use the ES6 import for cors
 import { lessonRoutes } from './routes/lessonRoutes.js';
 import { exerciseRoutes } from './routes/exerciseRoutes.js';
+import { nativeSpeakerRoutes } from './routes/nativeSpeakerRoutes.js';
 import { quizzesRoutes } from './routes/quizzesRoutes.js';
 import { userRoutes } from './routes/userRoutes.js';
+
 // Passport session setup.
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((obj, done) => done(null, obj));
@@ -62,8 +64,10 @@ export function createApp(client) {
 
     app.use('/lessons', cors(), lessonRoutes(client));
     app.use('/exercises', cors(), exerciseRoutes(client))
+    app.use('/nativeSpeakers', cors(), nativeSpeakerRoutes(client))
     app.use('/quizzes', cors(), quizzesRoutes(client))
     app.use('/user', cors(), userRoutes(client))
+
 
 
     return app;

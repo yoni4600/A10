@@ -1,3 +1,91 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Default light mode styles */
+body {
+    background-color: #ffffff;
+    color: #333333;
+}
+
+/* Dark mode styles */
+.dark div {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.dark body {
+    background-color: #333333;
+    color: #ffffff;
+}
+.dark button {
+    background-color: #ffffff;
+    color: #333333;
+}
+.dark h1 {
+    background-color: #333333;
+    color: #ffffff;
+}
+.dark h2 {
+    background-color: #333333;
+    color: #ffffff;
+}
+.dark main {
+    background-color: #333333;
+    color: #ffffff;
+}
+.dark header {
+    background-color: #333333;
+    color: #ffffff;
+}
+.dark p {
+    background-color: #333333;
+    color: #ffffff;
+}
+.dark button:hover {
+    background-color: #cccccc; /* Gray background color on hover */
+    color: #333333; /* Text color */
+}
+.dark .grid > div {
+    border: 1px solid #ffffff; /* Add border to each grid item */
+}
+/* Add negative margin to the buttons to remove extra space */
+.bg-customBackground {
+    margin-bottom: -8px; /* Adjust this value as needed */
+}
+
+.kid {
+    position: absolute;
+    bottom: 0;
+    left: -100px; /* Start position off the screen */
+    width: 200px; /* Adjust size as needed */
+    height: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: runAcross 10s linear infinite;
+  }
+  
+  @keyframes runAcross {
+    0% {
+      left: -100px; /* Start position off the screen */
+    }
+    100% {
+      left: calc(85vw); /* End position off the screen */
+    }
+  }
+  .no-border {
+    border: none !important;
+  }
+  .dark .no-border {
+    border: none !important;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+

@@ -27,12 +27,12 @@ const LessonDetail = ({ lesson }) => {
           rel="stylesheet"
         />
       </head>
-      <body className="bg-gradient-to-r from-blue-200 to-purple-300">
+      <body className="bg-customBackground">
         <div className="flex flex-col min-h-screen">
           <main className="flex-1">
             <div className="py-12">
               <div className="max-w-4xl mx-auto sm:px-6 lg:px-8">
-                <div className="bg-white p-6 rounded-xl shadow-xl">
+                <div className="bg-customDiv p-6 rounded-xl shadow-xl">
                   <h2 className="text-xl font-semibold mb-4">{mappedData.name}</h2>
                   <p className="text-gray-700 mb-4">{mappedData.description}</p>
                   <h3 className="text-lg font-semibold mb-2">Lesson Content</h3>
