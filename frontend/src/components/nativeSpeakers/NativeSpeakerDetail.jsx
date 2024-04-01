@@ -35,12 +35,12 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
           rel="stylesheet"
         />
       </head>
-      <body className="bg-gradient-to-r from-blue-200 to-purple-300">
+      <body className="bg-customBackground">
         <div className="flex flex-col min-h-screen">
           <main className="flex-1">
             <div className="py-12">
               <div className="max-w-4xl mx-auto sm:px-6 lg:px-8">
-                <div className="bg-white p-6 rounded-xl shadow-xl">
+                <div className="bg-customDiv p-6 rounded-xl shadow-xl">
                   <h2 className="text-xl font-semibold mb-4">{mappedData.name}</h2>
                   {/* <p className="text-gray-700 mb-4">{mappedData.description}</p> */}
                   <h3 className="text-lg font-semibold mb-2">Native Speaker Details:</h3>
@@ -67,13 +67,13 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
                     <div className=" flex flex-col ">
                         <button
                           onClick={handleStartSession}
-                          className="mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                          className="mb-2 bg-customSubmmit hover:bg-customSubmmitHover text-white font-bold py-2 px-4 rounded"
                         >
                           Start Session
                         </button>
                         <button
                           onClick={handleBackBtn}
-                          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                          className="bg-customSubmmit hover:bg-customSubmmitHover text-white font-bold py-2 px-4 rounded"
                         >
                           Back
                         </button>
