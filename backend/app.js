@@ -7,6 +7,7 @@ import { lessonRoutes } from './routes/lessonRoutes.js';
 import { exerciseRoutes } from './routes/exerciseRoutes.js';
 import { nativeSpeakerRoutes } from './routes/nativeSpeakerRoutes.js';
 import { quizzesRoutes } from './routes/quizzesRoutes.js';
+import { userRoutes } from './routes/userRoutes.js';
 
 // Passport session setup.
 passport.serializeUser((user, done) => done(null, user));
@@ -65,6 +66,8 @@ export function createApp(client) {
     app.use('/exercises', cors(), exerciseRoutes(client))
     app.use('/nativeSpeakers', cors(), nativeSpeakerRoutes(client))
     app.use('/quizzes', cors(), quizzesRoutes(client))
+    app.use('/user', cors(), userRoutes(client))
+
 
 
     return app;

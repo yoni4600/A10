@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import { Home } from './pages/Home';
 import { Login } from './pages/Login';
@@ -15,8 +15,34 @@ import NativeSpeakerDetailWrapper from './components/nativeSpeakers/NativeSpeake
 import QuizDetailWrapper from './components/quizzes/quizDetailWrapper';
 import Quizzes from './components/quizzes/quizzes';
 import { QuizzesProvider } from './contexts/quizzesContext';
-import DarkModeToggle from './components/darkMode/Toggle'; // Adjusted import statement
+import Register from './components/auth/register';
+import LoginRoute from './components/auth/login';
+import { PrivateRoute } from './components/auth/privateRoute';
+import { useCookies } from 'react-cookie';
+import { validateToken } from './services/authService';
+import DarkModeToggle from './components/darkMode/Toggle';
 
+const App = () => {
+  const [cookies] = useCookies(['token']);
+  const [authenticated, setAuthenticated] = useState(true);
+
+  useEffect(() => {
+    const checkTokenValidity = async () => {
+      try {
+        const tokenValid = await validateToken(cookies.token);
+        setAuthenticated(tokenValid);
+      } catch (error) {
+        console.error('Error validating token:', error);
+        setAuthenticated(false);
+      }
+    };
+
+    if (cookies.token) {
+      checkTokenValidity();
+    } else {
+      setAuthenticated(false);
+    }
+  }, [cookies.token]);
 
 const AppWrapper = () => {
   return (
@@ -46,15 +72,17 @@ const toggleDarkMode = () => {
           {location.pathname !== "/" && <Navbar />}
           <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/Home" element={<Home />} />
-            <Route path="/lessons" element={<Lessons />} />
-            <Route path="/lessons/:id" element={<LessonDetailWrapper />} />
-            <Route path="/exercises" element={<Exercises />} />
-            <Route path="/exercises/:id" element={<ExerciseDetailWrapper />} />
-            <Route path="/quizzes" element={<Quizzes />} />
-            <Route path="/quizzes/:id" element={<QuizDetailWrapper />} />
-            <Route path="/nativeSpeakers" element={<NativeSpeakers />} />
-            <Route path="/nativeSpeakers/:id" element={<NativeSpeakerDetailWrapper />} />
+            <Route path="/Home" element={<PrivateRoute isLoggedIn={authenticated}><Home /></PrivateRoute>} />
+            <Route path="/lessons" element={<PrivateRoute isLoggedIn={authenticated}><Lessons /></PrivateRoute>} />
+            <Route path="/lessons/:id" element={<PrivateRoute isLoggedIn={authenticated}><LessonDetailWrapper /></PrivateRoute>} />
+            <Route path="/exercises" element={<PrivateRoute isLoggedIn={authenticated}><Exercises /></PrivateRoute>} />
+            <Route path="/exercises/:id" element={<PrivateRoute isLoggedIn={authenticated}><ExerciseDetailWrapper /></PrivateRoute>} />
+            <Route path="/quiezzes" element={<PrivateRoute isLoggedIn={authenticated}><Quizzes /></PrivateRoute>} />
+            <Route path="/quizzes/:id" element={<PrivateRoute isLoggedIn={authenticated}><QuizDetailWrapper /></PrivateRoute>} />
+            <Route path="/nativeSpeakers" element={<PrivateRoute isLoggedIn={authenticated}><NativeSpeakers /></PrivateRoute>} />
+            <Route path="/nativeSpeakers/:id" element={<PrivateRoute isLoggedIn={authenticated}><NativeSpeakerDetailWrapper /></PrivateRoute>} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<LoginRoute />} />
           </Routes>
          </NativeSpeakersProvider>
         </QuizzesProvider>

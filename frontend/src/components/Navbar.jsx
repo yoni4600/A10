@@ -3,12 +3,16 @@ import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const navigate = useNavigate();
-
-  function logoutHandler() {
-    // Logic to handle logout
+  
+  function logoutHandler(){
+    deleteCookie('token');
     navigate('/');
   }
-
+  
+  function deleteCookie(name) {
+    document.cookie = `${name}=;`;
+  }
+  
   function returnHandler() {
     navigate(-1);
   }
