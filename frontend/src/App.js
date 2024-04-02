@@ -53,7 +53,7 @@ const App = () => {
     const location = useLocation();
     return (
       <>
-        {location.pathname !== "/" && <Navbar />}
+        {location.pathname !== "/" && location.pathname !== "/register"&&location.pathname !== "/login" && <Navbar />}
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/home" element={<PrivateRoute isLoggedIn={authenticated}><Home /></PrivateRoute>} />
