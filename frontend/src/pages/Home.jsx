@@ -8,6 +8,15 @@ import { jwtDecode } from "jwt-decode";
 
 export const Home = () => {
   const navigate = useNavigate();
+  const [cookies] = useCookies(['token']);
+
+  let username = ''; // Initialize username
+
+  // Decode token if available
+  if (cookies.token) {
+    const decodedToken = jwtDecode(cookies.token);
+    username = decodedToken.username;
+  }
 
   const handleLessonsClick = () => {
     navigate('/lessons');
@@ -21,9 +30,6 @@ export const Home = () => {
   const handleConnectSpeakersClick = () => {
     navigate('/nativeSpeakers');
   };
-  const [cookies] = useCookies(['token']);
-  const decodedToken = jwtDecode(cookies.token);
-  const username = decodedToken.username;
   // const [cookies] = useCookies(['token']);
   // Decode the token using decode function
   // const decodedToken = jwtDecode(cookies.token);
