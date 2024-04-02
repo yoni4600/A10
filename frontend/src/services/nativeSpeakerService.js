@@ -9,11 +9,13 @@ export const fetchNativeSpeakers = async () => {
   
       const mappedData = data.map((nativeSpeaker) => ({
         id: nativeSpeaker._id,
-        name: nativeSpeaker.name,
+        username: nativeSpeaker.username,
+        userType: nativeSpeaker.userType,
+        isAvailable: nativeSpeaker.isAvailable,
         language: nativeSpeaker.language,
         country: nativeSpeaker.country,
         description: nativeSpeaker.description,
-        rating: nativeSpeaker.rating,
+        zoomLink: nativeSpeaker.zoomLink,
       }));
       return mappedData;
     } catch (error) {
@@ -24,7 +26,7 @@ export const fetchNativeSpeakers = async () => {
   
   export const fetchNativeSpeakersDetail = async (nativeSpeakerId) => {
     try {
-      const response = await fetch(`http://localhost:4000/nativeSpeakers/${nativeSpeakerId}`);
+      const response = await fetch(`http://localhost:4000/user/${nativeSpeakerId}`);
       const data = await response.json();
   
       if (!data) {

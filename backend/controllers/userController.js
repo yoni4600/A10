@@ -21,9 +21,9 @@ export async function loginUser(req, res, client) {
         if (!passwordMatch) {
             return res.status(401).json({ success: false, error: 'Invalid username or password' });
         }
-
+        
         // Generate JWT token
-        const token = jwt.sign({ username: user.username, userType: user.userType }, "blabla", { expiresIn: '1h' });
+        const token = jwt.sign({ username: user.username, userType: user.userType ,id : user._id}, "blabla", { expiresIn: '1h' });
 
         res.cookie('token', token);
         if (req.body.rememberMe) {
@@ -38,9 +38,28 @@ export async function loginUser(req, res, client) {
     }
 }
 
+export async function updateUserAvailability(req, res, client) {
+    try {
+        const { isAvailable, username } = req.body;
+        const database = client.db('pilokdb');
+        const usersCollection = database.collection('users');
+        
+        // Update the user's availability status
+        await usersCollection.updateOne(
+            { username: username }, // Filter by username
+            { $set: { isAvailable: isAvailable } } // Update isAvailable field
+        );
+
+        return res.json({ success: true, message: 'Availability status updated successfully' });
+    } catch (error) {
+        console.error('Error updating availability status:', error);
+        return res.status(500).json({ success: false, error: 'Internal server error' });
+    }
+}
+
 export async function registerUser(req, res, client) {
     try {
-        const { username, password, userType, country, language, description, zoomLink } = req.body;
+        const { username, password, userType, country, language, description, zoomLink} = req.body;
         console.log('User logged in successfully');
         const database = client.db('pilokdb');
         const usersCollection = database.collection('users');
@@ -59,7 +78,8 @@ export async function registerUser(req, res, client) {
         let newUser = {
             username,
             password: hashedPassword,
-            userType: userType
+            userType: userType,
+            isAvailable: false
         };
 
         // If user type is "NativeSpeaker", add additional attributes

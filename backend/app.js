@@ -8,6 +8,8 @@ import { exerciseRoutes } from './routes/exerciseRoutes.js';
 import { nativeSpeakerRoutes } from './routes/nativeSpeakerRoutes.js';
 import { quizzesRoutes } from './routes/quizzesRoutes.js';
 import { userRoutes } from './routes/userRoutes.js';
+import { updateUserAvailability } from './controllers/userController.js';
+
 
 // Passport session setup.
 passport.serializeUser((user, done) => done(null, user));

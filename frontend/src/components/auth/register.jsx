@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { fetchRegister } from '../../services/authService';
 
 const Register = () => {
@@ -9,13 +10,15 @@ const Register = () => {
   const [language, setLanguage] = useState('');
   const [description, setDescription] = useState('');
   const [zoomLink, setZoomLink] = useState('');
-
+  const navigate = useNavigate();
+ 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       const { response, data } = await fetchRegister(username, password, userType, country, language, description, zoomLink);
       if (response.ok) {
         console.log('Registration successful');
+        navigate('/login');
         // Handle success as needed, e.g., redirect
       } else {
         console.error('Registration failed:', data.error);

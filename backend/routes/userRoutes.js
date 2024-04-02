@@ -1,5 +1,5 @@
 import express from 'express';
-import { loginUser, registerUser, validateToken } from '../controllers/userController.js';
+import { loginUser, registerUser, validateToken , updateUserAvailability } from '../controllers/userController.js';
 
 const router = express.Router();
 
@@ -8,5 +8,7 @@ export function userRoutes(client) {
     router.post('/login', (req, res) => loginUser(req, res, client));
     router.post('/register', (req, res) => registerUser(req, res, client));
     router.post('/validateToken', (req, res) => validateToken(req, res, client));
+    router.post('/updateAvailability', (req, res) => updateUserAvailability(req, res, client));
+
     return router;
 }

@@ -2,9 +2,6 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NativeSpeakerContext } from "../../contexts/nativeSpeakerContext"
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-
 const NativeSpeakers = () => {
     const nativeSpeakers = useContext(NativeSpeakerContext);
     const navigate = useNavigate();
@@ -26,11 +23,9 @@ const NativeSpeakers = () => {
                                         className="text-white  bg-customGrid hover:bg-customGridHover focus:ring-4 focus:ring-customGridHover font-medium rounded-lg text-sm px-5 py-3 text-center transition-colors duration-200"
                                         onClick={() => handleNativeSpeakerClick(nativeSpeaker)}
                                     >
-                                        {nativeSpeaker.name}
+                                        {nativeSpeaker.username}
                                         <br/>
                                         {nativeSpeaker.language}
-                                        <br/>
-                                        {nativeSpeaker.rating}<FontAwesomeIcon icon={faStar} className="text-yellow-400 " /> 
                                     </div>
                                 ))}
                             </div>
