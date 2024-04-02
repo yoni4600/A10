@@ -10,8 +10,16 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
   const nativeSpeakersDetail = nativeSpeaker || nativeSpeakersDetailContext;
   const navigate = useNavigate();
   const [cookies] = useCookies(['token']);
-  const decodedToken = jwtDecode(cookies.token);
-  const userType = decodedToken.userType;
+  let userType = ''; // Initialize userType
+  let decodedToken = null; // Define decodedToken outside the if block
+
+  // Decode token if available
+  if (cookies.token) {
+    const decodedToken = jwtDecode(cookies.token);
+    userType = decodedToken.userType;
+  }
+
+
   console.log("this user is:", userType);
   const [toggleChecked, setToggleChecked] = useState(() => {
     // Get the toggle state from localStorage if available, otherwise default to false
@@ -50,33 +58,35 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
   };
 
   const handleToggleChange = () => {
-    const newToggleValue = !toggleChecked; // Toggle the state
-    // Make API call to update availability status
-    fetch('http://localhost:4000/user/updateAvailability', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        // Authorization: `Bearer ${cookies.token}` // Include JWT token in headers
-      },
-      body: JSON.stringify({
-        username: decodedToken.username,
-        isAvailable: newToggleValue // Send new value to backend
-      }),
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to update availability status');
-        }
-        return response.json();
+    if (cookies.token) {
+      const newToggleValue = !toggleChecked; // Toggle the state
+      // Make API call to update availability status
+      fetch('http://localhost:4000/user/updateAvailability', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // Authorization: `Bearer ${cookies.token}` // Include JWT token in headers
+        },
+        body: JSON.stringify({
+          username: decodedToken.username,
+          isAvailable: newToggleValue // Send new value to backend
+        }),
       })
-      .then(data => {
-        setToggleChecked(newToggleValue); // Update state if API call succeeds
-      })
-      .catch(error => {
-        console.error('Error updating availability status:', error);
-        // Handle error here (e.g., show error message to user)
-      });
-  };
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to update availability status');
+          }
+          return response.json();
+        })
+        .then(data => {
+          setToggleChecked(newToggleValue); // Update state if API call succeeds
+        })
+        .catch(error => {
+          console.error('Error updating availability status:', error);
+          // Handle error here (e.g., show error message to user)
+        });
+    };
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-customBackground">
