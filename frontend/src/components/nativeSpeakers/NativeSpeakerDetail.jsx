@@ -18,11 +18,11 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
     return localStorage.getItem('toggleChecked') === 'true';
   });
   const [loading, setLoading] = useState(true);
-  const [nativeSpeakerData, setNativeSpeakerData] = useState(false);
+  // const [nativeSpeakerData, setNativeSpeakerData] = useState(false);
 
   useEffect(() => {
     setLoading(false); // Set loading to false when component mounts
-    setNativeSpeakerData(fetchNativeSpeakersDetail(decodedToken.id));
+    // setNativeSpeakerData(fetchNativeSpeakersDetail(decodedToken.id));
   }, []);
 
   // Update localStorage when toggle state changes
@@ -88,23 +88,12 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
               <h3 className="text-lg font-semibold mb-2">Native Speaker Details:</h3>
               {/* Render toggle button if user is a native speaker */}
               {userType === 'NativeSpeaker' && (
-                <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                  <input
-                    type="checkbox"
-                    id="toggle"
-                    className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
-                    checked={toggleChecked} // Set checked state
-                    onChange={handleToggleChange} // Toggle state on change
-                  />
-                  <label
-                    htmlFor="toggle"
-                    className={`toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-300 ${toggleChecked ? 'bg-blue-500' : 'bg-gray-300'}`}
-                  ></label>
-                </div>
-              )}
-              {/* Render "Available to teach!" based on toggleChecked state */}
-              {userType === 'NativeSpeaker' && toggleChecked && (
-                <div class='mb-2 bg-black text-white font-bold py-2 px-4 rounded-lg shadow-md w-48'>Available to teach!</div>
+                <button
+                  className={`bg-gray-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded ${toggleChecked ? 'bg-blue-500' : 'bg-gray-300'}`}
+                  onClick={handleToggleChange}
+                >
+                  {toggleChecked ? 'Available to teach!' : 'Not available'}
+                </button>
               )}
               {/* Render nativeSpeaker Content */}
               {Object.entries(mappedData).map(([key, value]) => (
