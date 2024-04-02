@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { ExerciseDetailProvider } from '../../contexts/exerciseContext';
 import ExerciseDetail from './exerciseDetail';
