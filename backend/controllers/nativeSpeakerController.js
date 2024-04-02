@@ -3,8 +3,8 @@ import { ObjectId } from 'mongodb';
 export async function getAllNativeSpeakers(req, res, client) {
     try {
         const database = client.db('pilokdb');
-        const nativeSpeakers = database.collection('NativeSpeakers');
-        const allNativeSpeakers = await nativeSpeakers.find({}).toArray();
+        const nativeSpeakers = database.collection('users');
+        const allNativeSpeakers = await nativeSpeakers.find({ userType: "NativeSpeaker" }).toArray();
         res.json(allNativeSpeakers);
     } catch (e) {
         res.status(500).send("Error fetching nativeSpeakers");
@@ -16,7 +16,7 @@ export async function getNativeSpeakerById(req, res, client) {
     try {
         const nativeSpeakerId = req.params.id; // Assuming the ID is provided as a request parameter
         const database = client.db('pilokdb');
-        const nativeSpeakers = database.collection('NativeSpeakers');
+        const nativeSpeakers = database.collection('users');
 
         // Convert the string ID to ObjectId
         const objectId = new ObjectId(nativeSpeakerId);

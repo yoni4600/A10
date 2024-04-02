@@ -1,17 +1,30 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { HOST, PORT } from "../config/config";
 const Navbar = () => {
   const navigate = useNavigate();
   
-  function logoutHandler(){
-    deleteCookie('token');
-    navigate('/');
+  async function logoutHandler() {
+    try {
+      const response = await fetch(`http://${HOST}:${PORT}/user/logout`, {
+        method: 'POST',
+        credentials: 'include' // Include cookies in the request
+      });
+      if (response.ok) {
+        navigate('/');
+      } else {
+        // Handle error response
+        console.error('Logout failed:', response.statusText);
+      }
+    } catch (error) {
+      // Handle network errors
+      console.error('Network error:', error.message);
+    }
   }
   
   function deleteCookie(name) {
-    document.cookie = `${name}=;`;
-  }
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  }  
   
   function returnHandler() {
     navigate(-1);

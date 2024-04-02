@@ -21,11 +21,14 @@ import DarkModeToggle from './components/darkMode/Toggle';
 import { NativeSpeakersProvider } from './contexts/nativeSpeakerContext';
 import NativeSpeakers from './components/nativeSpeakers/nativeSpeakers';
 import NativeSpeakerDetailWrapper from './components/nativeSpeakers/NativeSpeakerDetailWrapper';
+import { jwtDecode } from 'jwt-decode';
 
 const App = () => {
   const [cookies] = useCookies(['token']);
   const [authenticated, setAuthenticated] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [userData, setUserData] = useState(null); // State to hold decoded user data
+
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -36,6 +39,8 @@ const App = () => {
       try {
         const tokenValid = await validateToken(cookies.token);
         setAuthenticated(tokenValid);
+        const decodedToken = jwtDecode(cookies.token);
+        setUserData(decodedToken.userType);
       } catch (error) {
         console.error('Error validating token:', error);
         setAuthenticated(false);
