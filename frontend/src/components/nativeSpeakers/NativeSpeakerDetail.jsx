@@ -104,7 +104,7 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
               )}
               {/* Render "Available to teach!" based on toggleChecked state */}
               {userType === 'NativeSpeaker' && toggleChecked && (
-                <div className='mb-2 bg-blue-500 text-white font-bold py-2 px-4 rounded-lg shadow-md w-48'>Available to teach!</div>
+                <div class='mb-2 bg-black text-white font-bold py-2 px-4 rounded-lg shadow-md w-48'>Available to teach!</div>
               )}
               {/* Render nativeSpeaker Content */}
               {Object.entries(mappedData).map(([key, value]) => (
