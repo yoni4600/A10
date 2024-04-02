@@ -126,3 +126,8 @@ export async function validateToken(req, res, next) {
         }
     });
 }
+
+export async function logout(req, res, next) {
+    res.clearCookie('token'); // Clear the token cookie
+    res.sendStatus(200); // Send a success status code
+}

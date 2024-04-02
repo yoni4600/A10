@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChildReaching } from '@fortawesome/free-solid-svg-icons';
+import { useCookies } from 'react-cookie';
+import { jwtDecode } from "jwt-decode";
 // import { useCookies } from 'react-cookie';
 // import { jwtDecode } from "jwt-decode";
 
@@ -19,7 +21,9 @@ export const Home = () => {
   const handleConnectSpeakersClick = () => {
     navigate('/nativeSpeakers');
   };
-
+  const [cookies] = useCookies(['token']);
+  const decodedToken = jwtDecode(cookies.token);
+  const username = decodedToken.username;
   // const [cookies] = useCookies(['token']);
   // Decode the token using decode function
   // const decodedToken = jwtDecode(cookies.token);
@@ -31,7 +35,7 @@ export const Home = () => {
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-customDiv p-6 rounded-xl shadow-xl">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center">Hi! Enjoy your studying</h2>
+            <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center">Hi {username}! Enjoy your studying</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
               <button onClick={handleQuizzesClick} className="p-4 border border-gray-200 rounded-lg bg-customGrid text-white font-bold text-lg hover:bg-customGridHover focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150">
                 Quizzes
