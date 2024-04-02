@@ -3,7 +3,7 @@ import { NativeSpeakerDetailContext } from '../../contexts/nativeSpeakerContext'
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { jwtDecode } from "jwt-decode";
-import {fetchNativeSpeakersDetail} from '../../services/nativeSpeakerService'
+import { fetchNativeSpeakersDetail } from '../../services/nativeSpeakerService';
 
 const NativeSpeakerDetail = ({ nativeSpeaker }) => {
   const nativeSpeakersDetailContext = useContext(NativeSpeakerDetailContext);
@@ -12,16 +12,23 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
   const [cookies] = useCookies(['token']);
   const decodedToken = jwtDecode(cookies.token);
   const userType = decodedToken.userType;
-  console.log("this user is:",userType)
-  const [toggleChecked, setToggleChecked] = useState(false); // State for toggle button
+  console.log("this user is:", userType);
+  const [toggleChecked, setToggleChecked] = useState(() => {
+    // Get the toggle state from localStorage if available, otherwise default to false
+    return localStorage.getItem('toggleChecked') === 'true';
+  });
   const [loading, setLoading] = useState(true);
-  const [nativeSpeakerData,setNativeSpeakerData] = useState(false)
-  // console.log(decodedToken.id)
+  const [nativeSpeakerData, setNativeSpeakerData] = useState(false);
 
   useEffect(() => {
     setLoading(false); // Set loading to false when component mounts
-    setNativeSpeakerData(fetchNativeSpeakersDetail(decodedToken.id))
+    setNativeSpeakerData(fetchNativeSpeakersDetail(decodedToken.id));
   }, []);
+
+  // Update localStorage when toggle state changes
+  useEffect(() => {
+    localStorage.setItem('toggleChecked', toggleChecked);
+  }, [toggleChecked]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -46,30 +53,30 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
     const newToggleValue = !toggleChecked; // Toggle the state
     // Make API call to update availability status
     fetch('http://localhost:4000/user/updateAvailability', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            // Authorization: `Bearer ${cookies.token}` // Include JWT token in headers
-        },
-        body: JSON.stringify({ 
-            username : decodedToken.username,
-            isAvailable: newToggleValue // Send new value to backend
-        }),
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // Authorization: `Bearer ${cookies.token}` // Include JWT token in headers
+      },
+      body: JSON.stringify({
+        username: decodedToken.username,
+        isAvailable: newToggleValue // Send new value to backend
+      }),
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to update availability status');
-            }
-            return response.json();
-        })
-        .then(data => {
-            setToggleChecked(newToggleValue); // Update state if API call succeeds
-        })
-        .catch(error => {
-            console.error('Error updating availability status:', error);
-            // Handle error here (e.g., show error message to user)
-        });
-};
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to update availability status');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setToggleChecked(newToggleValue); // Update state if API call succeeds
+      })
+      .catch(error => {
+        console.error('Error updating availability status:', error);
+        // Handle error here (e.g., show error message to user)
+      });
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-customBackground">
@@ -95,24 +102,26 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
                   ></label>
                 </div>
               )}
+              {/* Render "Available to teach!" based on toggleChecked state */}
+              {userType === 'NativeSpeaker' && toggleChecked && (
+                <div className='mb-2 bg-blue-500 text-white font-bold py-2 px-4 rounded-lg shadow-md w-48'>Available to teach!</div>
+              )}
               {/* Render nativeSpeaker Content */}
               {Object.entries(mappedData).map(([key, value]) => (
                 key === 'password' || key === 'username' || key === 'userType' ? null :
-                key === 'isAvailable' && value ? // Check if value is truthy
-                <div className='mb-2 bg-brown-500 text-black font-bold py-2 px-4 rounded-lg shadow-md w-48'>Available to teach!</div> : 
-                <div key={key} className="mb-4">
-                  {typeof value === 'object' ? (
-                    <div className="ml-4">
-                      {Object.entries(value).map(([nestedKey, nestedValue]) => (
-                        <div key={nestedKey} className="mb-2">
-                          <li><strong>{nestedKey}:</strong> {nestedValue}</li>
-                        </div> 
-                      ))}
+                    <div key={key} className="mb-4">
+                      {typeof value === 'object' ? (
+                        <div className="ml-4">
+                          {Object.entries(value).map(([nestedKey, nestedValue]) => (
+                            <div key={nestedKey} className="mb-2">
+                              <li><strong>{nestedKey}:</strong> {nestedValue}</li>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-gray-700">{value}</p>
+                      )}
                     </div>
-                  ) : (
-                    <p className="text-gray-700">{value}</p>
-                  )}
-                </div>
               ))}
               <div className='flex justify-end'>
                 <div className=" flex flex-col ">
