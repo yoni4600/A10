@@ -30,11 +30,6 @@ export const Home = () => {
   const handleConnectSpeakersClick = () => {
     navigate('/nativeSpeakers');
   };
-  // const [cookies] = useCookies(['token']);
-  // Decode the token using decode function
-  // const decodedToken = jwtDecode(cookies.token);
-  // const username = decodedToken.userType; // assuming username is stored as 'username' in the token payload
-  // console.log("this is user", username)
 
   return (
     <main className="bg-customBackground min-h-screen flex flex-col ">

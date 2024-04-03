@@ -11,7 +11,7 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
   const navigate = useNavigate();
   const [cookies] = useCookies(['token']);
   let userType = ''; // Initialize userType
-  let decodedToken = null; // Define decodedToken outside the if block
+  let decodedToken = ''; // Define decodedToken outside the if block
 
   // Decode token if available
   if (cookies.token) {

@@ -12,36 +12,49 @@ const Login = () => {
     try {
       const { response, data } = await fetchLogin(username, password);
       if (response.ok) {
-        // If login successful, redirect or handle as needed
         console.log('Login successful');
-        document.cookie = `token=${data.token};`;
-        navigate('/Home');
+        document.cookie = `token=${data.token};`; 
+        console.log("before nav")
+        console.log("after nav")
+        window.location.href = '/home'; // Redirect to '/home'
+
       } else {
-        // Handle login failure, e.g., display error message
         console.error('Login failed:', data.error);
         alert('Login failed: ' + data.error);
       }
     } catch (error) {
       console.error('An error occurred while logging in:', error);
-      // Handle error, e.g., display error message
       alert('An error occurred while logging in');
     }
   };
 
+  const handleReturn = () => {
+    navigate('/'); 
+  };
+
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Username:</label>
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+    <div className="relative bg-customBackground min-h-screen flex flex-col">
+      <button onClick={handleReturn} className="absolute top-0 right-0 text-white bg-customSubmmit hover:bg-customSubmmitHover focus:ring-4 focus:ring-customSubmmitHover font-medium rounded-lg text-sm px-6 py-3 text-center transition-colors duration-200">
+        Return
+      </button>
+      <div className="flex justify-center mt-12"> {/* Adjusted margin to account for the button */}
+        <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
+          <h2 className="text-2xl font-semibold text-center text-gray-800 mb-4">Login</h2>
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Username:</label>
+              <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"/>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Password:</label>
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"/>
+            </div>
+            <div className="flex justify-center">
+              <button type="submit" className="text-white bg-customSubmmit hover:bg-customSubmmitHover focus:ring-4 focus:ring-customSubmmitHover font-medium rounded-lg text-sm px-6 py-3 text-center transition-colors duration-200">Login</button>
+            </div>
+          </form>
         </div>
-        <div>
-          <label>Password:</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+      </div>
     </div>
   );
 };
