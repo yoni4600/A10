@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; // Import Navigate
+import { Navigate } from 'react-router-dom'; // Import Navigate
 
 export const PrivateRoute = ({ children, isLoggedIn }) => {
     if (!isLoggedIn) {

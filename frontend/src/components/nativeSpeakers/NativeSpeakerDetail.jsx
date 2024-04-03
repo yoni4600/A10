@@ -3,7 +3,6 @@ import { NativeSpeakerDetailContext } from '../../contexts/nativeSpeakerContext'
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { jwtDecode } from "jwt-decode";
-import { fetchNativeSpeakersDetail } from '../../services/nativeSpeakerService';
 
 const NativeSpeakerDetail = ({ nativeSpeaker }) => {
   const nativeSpeakersDetailContext = useContext(NativeSpeakerDetailContext);
