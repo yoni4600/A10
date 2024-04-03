@@ -78,6 +78,14 @@ body {
   .dark .no-border {
     border: none !important;
   }
+  .dark label {
+    background-color: #333333;
+    color: #ffffff;
+}
+.dark select {
+    background-color: #333333;
+    color: #ffffff;
+}
   
   
   
