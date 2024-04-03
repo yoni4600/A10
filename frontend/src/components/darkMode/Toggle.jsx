@@ -6,14 +6,6 @@ const DarkModeToggle = () => {
         document.documentElement.classList.toggle("light");
     };
 
-    // view
-    const setView = (v) => {
-        document.querySelector('h1').innerText = v;
-        var randomColor = Math.floor(Math.random()*16777215).toString(16);
-        document.querySelector('h1').style.borderBottom = `10px solid #${randomColor}`;
-        toggleMenu(true);
-    };
-
     // menu
     const toggleMenu = (hide) => {
         if (!hide) {

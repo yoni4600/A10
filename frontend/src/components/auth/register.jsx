@@ -11,7 +11,6 @@ const Register = () => {
   const [description, setDescription] = useState('');
   const [zoomLink, setZoomLink] = useState('');
   const navigate = useNavigate();
-
   const handleRegister = async (e) => {
     e.preventDefault();
     try {

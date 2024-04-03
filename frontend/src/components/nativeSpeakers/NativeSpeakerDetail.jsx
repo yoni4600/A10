@@ -122,16 +122,6 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
                       )}
                     </div>
               ))}
-              <div className='flex justify-end'>
-                <div className=" flex flex-col ">
-                  <button
-                    onClick={handleBackBtn}
-                    className="bg-customSubmmit hover:bg-customSubmmitHover text-white font-bold py-2 px-4 rounded"
-                  >
-                    Back
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         </div>

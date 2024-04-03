@@ -14,10 +14,7 @@ const Login = () => {
       if (response.ok) {
         console.log('Login successful');
         document.cookie = `token=${data.token};`; 
-        console.log("before nav")
-        console.log("after nav")
         window.location.href = '/home'; // Redirect to '/home'
-
       } else {
         console.error('Login failed:', data.error);
         alert('Login failed: ' + data.error);
