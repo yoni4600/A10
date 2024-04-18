@@ -20,6 +20,7 @@ const Register = () => {
       if (response.ok) {
         console.log('Registration successful');
         alert('Registered successfully!');
+        navigate('/login');
         // Handle success as needed, e.g., redirect
       } else {
         console.error('Registration failed:', data.error);
