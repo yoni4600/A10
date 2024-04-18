@@ -12,12 +12,14 @@ const Register = () => {
   const [zoomLink, setZoomLink] = useState('');
   const navigate = useNavigate();
 
+
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       const { response, data } = await fetchRegister(username, password, userType, country, language, description, zoomLink);
       if (response.ok) {
         console.log('Registration successful');
+        alert('Registered successfully!');
         // Handle success as needed, e.g., redirect
       } else {
         console.error('Registration failed:', data.error);
