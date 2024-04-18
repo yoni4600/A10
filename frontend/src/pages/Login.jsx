@@ -13,6 +13,7 @@ export const Login = () => {
 
   return (
     <div className="bg-customBackground min-h-screen flex flex-col items-center justify-center px-4">
+      <h1 className="text-4xl font-bold text-gray-800 mb-8">Welcome to Pillow Talk!</h1>
       <div className="flex justify-between max-w-lg w-full mx-auto">
         <div className="bg-customDiv p-8 rounded-xl shadow-xl w-1/2 mr-4">
           <h2 className="text-center text-3xl font-bold text-gray-700 mb-8">Login To Your Account</h2>
