@@ -15,7 +15,10 @@ export function createApp(client) {
     const app = express();
 
     // Use application-level middleware for common functionality
-    app.use(cors());
+    app.use(cors({
+        origin: 'https://a10-frontend-lac.vercel.app', // Change this to your frontend URL
+        credentials: true // Allow credentials (cookies)
+    }));
     app.use(express.json()); // Parse JSON bodies
     
     // Define routes
