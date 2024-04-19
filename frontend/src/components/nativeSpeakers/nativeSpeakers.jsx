@@ -2,11 +2,18 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NativeSpeakerContext } from "../../contexts/nativeSpeakerContext"
 
+/**
+ * NativeSpeakers component is responsible for rendering the list of native speakers.
+ * It uses the NativeSpeakerContext to retrieve the native speakers data and provides navigation to the details page.
+ */
 const NativeSpeakers = () => {
+    // Get the list of native speakers from the context
     const nativeSpeakers = useContext(NativeSpeakerContext);
     const navigate = useNavigate();
 
+    // Function to handle click on a native speaker
     const handleNativeSpeakerClick = (nativeSpeaker) => {
+        // Navigate to the detail page of the clicked native speaker
         navigate(`/nativeSpeakers/${nativeSpeaker.id}`, { state: { nativeSpeaker } });
     };
 

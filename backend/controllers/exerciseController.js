@@ -1,5 +1,11 @@
 import { ObjectId } from 'mongodb';
 
+/**
+ * Retrieves all exercises from the MongoDB collection.
+ * @param {object} req - The request object.
+ * @param {object} res - The response object.
+ * @param {object} client - The MongoDB client object.
+ */
 export async function getAllExercises(req, res, client) {
     try {
         const database = client.db('pilokdb');
@@ -13,6 +19,12 @@ export async function getAllExercises(req, res, client) {
     }
 }
 
+/**
+ * Retrieves a specific exercise by its ID from the MongoDB collection.
+ * @param {object} req - The request object containing the exercise ID.
+ * @param {object} res - The response object.
+ * @param {object} client - The MongoDB client object.
+ */
 export async function getExerciseById(req, res, client) {
     try {
         const exerciseId = req.params.id; // Assuming the ID is provided as a request parameter

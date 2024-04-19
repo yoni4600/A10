@@ -4,8 +4,17 @@ import { faChildReaching } from '@fortawesome/free-solid-svg-icons';
 import { useCookies } from 'react-cookie';
 import { jwtDecode } from "jwt-decode";
 
+/**
+ * Home component displays the main dashboard with options for users to navigate.
+ * It provides buttons for accessing quizzes, lessons, exercises, and connecting with native speakers.
+ * @returns {JSX.Element} Home component UI
+ */
 export const Home = () => {
+
+  // Initialize React Router's navigate function
   const navigate = useNavigate();
+
+  // Get cookies using react-cookie hook
   const [cookies] = useCookies(['token']);
 
   let username = ''; // Initialize username

@@ -1,9 +1,20 @@
 import { ObjectId } from 'mongodb';
 
+/**
+ * Retrieves all quizzes from the MongoDB collection.
+ * @param {object} req - The request object.
+ * @param {object} res - The response object.
+ * @param {object} client - The MongoDB client object.
+ */
 export async function getAllQuiezzes(req, res, client) {
     try {
+        // Accessing the 'pilokdb' database
         const database = client.db('pilokdb');
+
+        // Accessing the 'Quizzes' collection
         const queizzes = database.collection('Quizzes');
+
+        // Fetching all quizzes from the collection
         const allQuiezzes = await queizzes.find({}).toArray();
         res.json(allQuiezzes);
     } catch (e) {
@@ -12,9 +23,14 @@ export async function getAllQuiezzes(req, res, client) {
     }
 }
 
+/**
+ * Retrieves a specific quiz by its ID from the MongoDB collection.
+ * @param {object} req - The request object containing the quiz ID.
+ * @param {object} res - The response object.
+ * @param {object} client - The MongoDB client object.
+ */
 export async function getQuizById(req, res, client) {
     try {
-
         const quizId = req.params.id; // Assuming the ID is provided as a request parameter
         const database = client.db('pilokdb');
         const queizzes = database.collection('Quizzes');

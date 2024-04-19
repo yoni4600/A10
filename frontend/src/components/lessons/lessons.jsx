@@ -2,11 +2,19 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LessonContext } from "../../contexts/lessonContext"
 
+/**
+ * Lessons component is responsible for rendering the list of lessons.
+ * It retrieves the lessons from the LessonContext and provides navigation to individual lesson details.
+ */
 const Lessons = () => {
+    // Retrieve lessons from the LessonContext
     const lessons = useContext(LessonContext);
+    // Initialize the useNavigate hook for navigation
     const navigate = useNavigate();
 
+    // Function to handle clicking on a lesson item
     const handleLessonClick = (lesson) => {
+        // Navigate to the individual lesson detail page with the lesson data passed as state
         navigate(`/lessons/${lesson.id}`, { state: { lesson } });
     };
 

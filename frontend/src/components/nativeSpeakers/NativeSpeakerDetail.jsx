@@ -4,9 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { jwtDecode } from "jwt-decode";
 
+/**
+ * NativeSpeakerDetail component is responsible for rendering the details of a native speaker.
+ * It retrieves the native speaker data from the NativeSpeakerDetailContext or props, and provides functionality to update availability.
+ */
 const NativeSpeakerDetail = ({ nativeSpeaker }) => {
+
+  // Retrieve native speaker data from the context or props
   const nativeSpeakersDetailContext = useContext(NativeSpeakerDetailContext);
   const nativeSpeakersDetail = nativeSpeaker || nativeSpeakersDetailContext;
+
+  // Initialize hooks for navigation and cookies
   const navigate = useNavigate();
   const [cookies] = useCookies(['token']);
   let userType = ''; // Initialize username

@@ -1,14 +1,20 @@
 import React, { useContext } from 'react';
 import { LessonDetailContext } from '../../contexts/lessonContext';
 
+/**
+ * LessonDetail component displays details of a lesson including its name, description, and content.
+ * If lesson data is not available, it shows a loading message.
+ */
 const LessonDetail = ({ lesson }) => {
   const lessonsDetailContext = useContext(LessonDetailContext);
   const lessonsDetail = lesson || lessonsDetailContext;
 
+  // Retrieve lesson detail from LessonDetailContext
   if (!lessonsDetail) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; // Display loading message if lesson detail is not available
   }
 
+  // Map lesson data to a readable format
   const mappedData = {
     id: lessonsDetail._id,
     name: lessonsDetail.name,

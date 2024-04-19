@@ -3,6 +3,11 @@ import { loginUser, registerUser, validateToken , updateUserAvailability, logout
 
 const router = express.Router();
 
+/**
+ * Defines routes related to user authentication, registration, and management.
+ * @param {object} client - The MongoDB client object.
+ * @returns {object} Express router for user routes.
+ */
 export function userRoutes(client) {
     // Pass the MongoDB client to the controller
     router.post('/login', (req, res) => loginUser(req, res, client));

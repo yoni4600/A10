@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { fetchRegister } from '../../services/authService';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * Register component for user registration.
+ */
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -12,6 +15,10 @@ const Register = () => {
   const [zoomLink, setZoomLink] = useState('');
   const navigate = useNavigate();
 
+  /**
+   * Handles the registration form submission.
+   * @param {object} e - The form submission event.
+   */
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
@@ -29,10 +36,14 @@ const Register = () => {
     }
   };
 
+  /**
+   * Handles the return button click to navigate back to home.
+   */
   const handleReturn = () => {
     navigate('/'); 
   };
 
+  // Additional input fields for NativeSpeaker type
   const additionalOptions = userType === 'NativeSpeaker' && (
     <div className="space-y-4">
       <div>

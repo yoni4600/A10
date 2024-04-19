@@ -6,14 +6,19 @@ import { nativeSpeakerRoutes } from './routes/nativeSpeakerRoutes.js';
 import { quizzesRoutes } from './routes/quizzesRoutes.js';
 import { userRoutes } from './routes/userRoutes.js';
 
-
+/**
+ * Creates an Express application with defined routes and middleware.
+ * @param {object} client - The MongoDB client object.
+ * @returns {object} Express application instance.
+ */
 export function createApp(client) {
     const app = express();
 
     // Use application-level middleware for common functionality
     app.use(cors());
     app.use(express.json()); // Parse JSON bodies
-
+    
+    // Define routes
     app.get('/', (req, res) => {
         res.send('Welcome to Pilok API !');
     });

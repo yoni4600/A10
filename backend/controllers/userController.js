@@ -1,6 +1,12 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
+/**
+ * Authenticates a user by checking username and password, then generates a JWT token upon successful login.
+ * @param {object} req - The request object containing username and password in the body.
+ * @param {object} res - The response object.
+ * @param {object} client - The MongoDB client object.
+ */
 export async function loginUser(req, res, client) {
     try {
         const { username, password } = req.body;
@@ -36,6 +42,12 @@ export async function loginUser(req, res, client) {
     }
 }
 
+/**
+ * Updates the availability status of a user.
+ * @param {object} req - The request object containing the updated availability status and username.
+ * @param {object} res - The response object.
+ * @param {object} client - The MongoDB client object.
+ */
 export async function updateUserAvailability(req, res, client) {
     try {
         const { isAvailable, username } = req.body;
@@ -55,6 +67,12 @@ export async function updateUserAvailability(req, res, client) {
     }
 }
 
+/**
+ * Registers a new user.
+ * @param {object} req - The request object containing user details in the body.
+ * @param {object} res - The response object.
+ * @param {object} client - The MongoDB client object.
+ */
 export async function registerUser(req, res, client) {
     try {
         const { username, password, userType, country, language, description, zoomLink} = req.body;
@@ -101,11 +119,16 @@ export async function registerUser(req, res, client) {
     }
 }
 
+/**
+ * Middleware function to validate JWT token.
+ * @param {object} req - The request object containing the JWT token.
+ * @param {object} res - The response object.
+ * @param {function} next - The next middleware function.
+ */
 export async function validateToken(req, res, next) {
     // Get token from cookies, headers, or query parameters
     const token = req.headers.authorization;
     if (!token) {
-        console.log("no token ", token)
         return res.status(401).json({ success: false, error: 'Unauthorized: No token provided' });
     }
     // Extract token from "Bearer <token>"

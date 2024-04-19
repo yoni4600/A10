@@ -1,5 +1,9 @@
 import { HOST, PORT } from "../config/config";
 
+/**
+ * Fetches all exercises from the server.
+ * @returns {Promise<Array>} A promise that resolves to an array of exercise objects.
+ */
 export const fetchExercises = async () => {
     try {
       const response = await fetch(`http://${HOST}:${PORT}/exercises`);
@@ -22,6 +26,11 @@ export const fetchExercises = async () => {
     }
   };
 
+/**
+ * Fetches details of a specific exercise from the server.
+ * @param {string} exerciseId - The ID of the exercise to fetch details for.
+ * @returns {Promise<Object|null>} A promise that resolves to the exercise object if found, otherwise null.
+ */
 export const fetchExerciseDetail = async (exerciseId) => {
   try {
     const response = await fetch(`http://${HOST}:${PORT}/exercises/${exerciseId}`);

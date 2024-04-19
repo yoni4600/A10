@@ -1,8 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { QuizDetailContext } from '../../contexts/quizzesContext';
 
+/**
+ * QuizDetail component is responsible for rendering the details of a quiz,
+ * including questions and handling user submissions.
+ * It uses QuizDetailContext to retrieve the quiz data.
+ */
 const QuizDetail = ({ quiz }) => {
+  // Retrieve quiz data from context or props
   const quizzesDetail = useContext(QuizDetailContext) || quiz;
+
+  // State for tracking user submissions and answers
   const [submitted, setSubmitted] = useState(false);
   const [answers, setAnswers] = useState(Array(quizzesDetail.questions.length).fill(''));
   const [results, setResults] = useState(Array(quizzesDetail.questions.length).fill(null));
@@ -11,6 +19,7 @@ const QuizDetail = ({ quiz }) => {
     return <div>Loading...</div>;
   }
 
+  // Function to handle change in user answers
   const handleAnswerChange = (index, event) => {
     const newAnswers = [...answers];
     newAnswers[index] = event.target.value;
@@ -21,6 +30,7 @@ const QuizDetail = ({ quiz }) => {
     setResults(newResults);
   };
 
+  // Function to handle quiz submission
   const handleSubmit = () => {
     const newResults = answers.map((answer, index) => {
       return answer.toLowerCase() === quizzesDetail.answers[index].toLowerCase();
@@ -29,6 +39,7 @@ const QuizDetail = ({ quiz }) => {
     setSubmitted(true);
   };
 
+  // Function to calculate user's score
   const calculateScore = () => {
     const correctAnswers = results.filter(result => result).length;
     const totalQuestions = quizzesDetail.questions.length;
@@ -36,6 +47,7 @@ const QuizDetail = ({ quiz }) => {
     return score;
   };
 
+  // Function to determine color based on score
   const getScoreColor = (score) => {
     if (score === 100) {
       return "text-green-500";

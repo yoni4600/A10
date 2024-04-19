@@ -1,12 +1,21 @@
 import React from 'react';
 
+/**
+ * DarkModeToggle component for toggling between dark and light mode.
+ */
 const DarkModeToggle = () => {
+   /**
+   * Toggles between dark and light mode.
+   */
     const toggle = () => {
         document.documentElement.classList.toggle("dark");
         document.documentElement.classList.toggle("light");
     };
 
-    // view
+  /**
+   * Sets the view based on the selected option.
+   * @param {string} v - The selected view option.
+   */
     const setView = (v) => {
         document.querySelector('h1').innerText = v;
         var randomColor = Math.floor(Math.random()*16777215).toString(16);
@@ -14,7 +23,10 @@ const DarkModeToggle = () => {
         toggleMenu(true);
     };
 
-    // menu
+  /**
+   * Toggles the menu visibility.
+   * @param {boolean} hide - Indicates whether to hide the menu.
+   */
     const toggleMenu = (hide) => {
         if (!hide) {
             document.querySelector('#ddMenu').classList.toggle('hidden');

@@ -2,11 +2,18 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchLogin } from '../../services/authService';
 
+/**
+ * Login component for user authentication.
+ */
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  /**
+   * Handles the login form submission.
+   * @param {object} e - The form submission event.
+   */
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -26,6 +33,9 @@ const Login = () => {
     }
   };
 
+  /**
+   * Handles the return button click to navigate back to home.
+   */
   const handleReturn = () => {
     navigate('/'); 
   };

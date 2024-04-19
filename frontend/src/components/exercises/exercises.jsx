@@ -2,10 +2,15 @@ import React, { useContext } from 'react';
 import {  useNavigate } from 'react-router-dom';
 import { ExerciseContext } from '../../contexts/exerciseContext';
 
+/**
+ * Exercises component displays a list of exercises. Each exercise is clickable, and when clicked, it navigates to the exercise detail page.
+ */
 const Exercises = () => {
+    // Retrieve exercises from ExerciseContext
     const exercises = useContext(ExerciseContext);
     const navigate = useNavigate();
 
+    // Function to handle exercise click event
     const handleExerciseClick = (exercise) => {
         navigate(`/exercises/${exercise.id}`, { state: { exercise } });
     };
