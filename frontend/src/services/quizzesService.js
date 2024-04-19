@@ -1,8 +1,8 @@
-//import { HOST, PORT } from "../config/config";
+import { HOST, PORT } from "../config/config";
 
 export const fetchQuizzes = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/quizzes`);
+      const response = await fetch(`http://${HOST}:${PORT}/quizzes`);
       const data = await response.json();
   
       const mappedData = data.map((quiz) => ({
@@ -22,7 +22,7 @@ export const fetchQuizzes = async () => {
   
   export const fetchQuizzesDetail = async (quizId) => {
     try {
-      const response = await fetch(`http://localhost:4000/quizzes/${quizId}`);
+      const response = await fetch(`http://${HOST}:${PORT}/quizzes/${quizId}`);
       const data = await response.json();
   
       if (!data) {

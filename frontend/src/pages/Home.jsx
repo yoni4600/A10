@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChildReaching } from '@fortawesome/free-solid-svg-icons';
 import { useCookies } from 'react-cookie';
 import { jwtDecode } from "jwt-decode";
-// import { useCookies } from 'react-cookie';
-// import { jwtDecode } from "jwt-decode";
 
 export const Home = () => {
   const navigate = useNavigate();
