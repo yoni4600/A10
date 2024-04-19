@@ -64,7 +64,7 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
   const handleToggleChange = () => {
     const newToggleValue = !toggleChecked; // Toggle the state
     // Make API call to update availability status
-    fetch(`http://${HOST}:${PORT}/user/updateAvailability`, {
+    fetch(`https://${HOST}:${PORT}/user/updateAvailability`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

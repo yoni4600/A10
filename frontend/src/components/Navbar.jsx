@@ -12,7 +12,7 @@ const Navbar = () => {
   // Function to handle logout
   async function logoutHandler() {
     try {
-      const response = await fetch(`http://${HOST}:${PORT}/user/logout`, {
+      const response = await fetch(`https://${HOST}:${PORT}/user/logout`, {
         method: 'POST',
         credentials: 'include' // Include cookies in the request
       });
