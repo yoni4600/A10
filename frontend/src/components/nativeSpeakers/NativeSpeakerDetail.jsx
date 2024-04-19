@@ -3,22 +3,15 @@ import { NativeSpeakerDetailContext } from '../../contexts/nativeSpeakerContext'
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { jwtDecode } from "jwt-decode";
+// import { fetchNativeSpeakersDetail } from '../../services/nativeSpeakerService';
 
 const NativeSpeakerDetail = ({ nativeSpeaker }) => {
   const nativeSpeakersDetailContext = useContext(NativeSpeakerDetailContext);
   const nativeSpeakersDetail = nativeSpeaker || nativeSpeakersDetailContext;
   const navigate = useNavigate();
   const [cookies] = useCookies(['token']);
-  let userType = ''; // Initialize userType
-  let decodedToken = ''; // Define decodedToken outside the if block
-
-  // Decode token if available
-  if (cookies.token) {
-    const decodedToken = jwtDecode(cookies.token);
-    userType = decodedToken.userType;
-  }
-
-
+  const decodedToken = jwtDecode(cookies.token);
+  const userType = decodedToken.userType;
   console.log("this user is:", userType);
   const [toggleChecked, setToggleChecked] = useState(() => {
     // Get the toggle state from localStorage if available, otherwise default to false
@@ -57,35 +50,35 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
   };
 
   const handleToggleChange = () => {
-    if (cookies.token) {
-      const newToggleValue = !toggleChecked; // Toggle the state
-      // Make API call to update availability status
-      fetch('http://localhost:4000/user/updateAvailability', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // Authorization: `Bearer ${cookies.token}` // Include JWT token in headers
-        },
-        body: JSON.stringify({
-          username: decodedToken.username,
-          isAvailable: newToggleValue // Send new value to backend
-        }),
+    console.log(toggleChecked)
+    const newToggleValue = !toggleChecked; // Toggle the state
+    console.log(newToggleValue)
+    // Make API call to update availability status
+    fetch('http://localhost:4000/user/updateAvailability', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // Authorization: `Bearer ${cookies.token}` // Include JWT token in headers
+      },
+      body: JSON.stringify({
+        username: decodedToken.username,
+        isAvailable: newToggleValue // Send new value to backend
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to update availability status');
+        }
+        return response.json();
       })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Failed to update availability status');
-          }
-          return response.json();
-        })
-        .then(data => {
-          setToggleChecked(newToggleValue); // Update state if API call succeeds
-        })
-        .catch(error => {
-          console.error('Error updating availability status:', error);
-          // Handle error here (e.g., show error message to user)
-        });
-    };
-  }
+      .then(data => {
+        setToggleChecked(newToggleValue); // Update state if API call succeeds
+      })
+      .catch(error => {
+        console.error('Error updating availability status:', error);
+        // Handle error here (e.g., show error message to user)
+      });
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-customBackground">
@@ -103,6 +96,14 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
                 >
                   {toggleChecked ? 'Available to teach!' : 'Not available'}
                 </button>
+              )}
+              {/* Render  Label if user is not a native speaker */}
+              {userType === '' && (
+                <label
+                  className={`bg-gray-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded ${toggleChecked ? 'bg-blue-500' : 'bg-gray-300'}`}
+                >
+                  {toggleChecked ? 'Available to teach!' : 'Not available'}
+                </label>
               )}
               {/* Render nativeSpeaker Content */}
               {Object.entries(mappedData).map(([key, value]) => (
