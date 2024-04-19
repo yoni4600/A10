@@ -40,7 +40,7 @@ export const validateToken = async (token) => {
  */
 export const fetchRegister = async (username, password, userType, country, language, description, zoomLink) => {
   try {
-    const response = await fetch(`http://${HOST}:${PORT}/user/register`, {
+    const response = await fetch(`https://${HOST}:${PORT}/user/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
