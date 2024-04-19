@@ -1,8 +1,11 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { fetchExercises, fetchExerciseDetail } from '../services/exerciseService';
 
+// Create a context for managing exercises
 const ExerciseContext = createContext();
-const ExerciseDetailContext = createContext(); // Add ExerciseDetailContext
+
+// Create a context for managing exercise details
+const ExerciseDetailContext = createContext();
 
 export const ExerciseProvider = (props) => {
   const [exercises, setExercises] = useState([]);
@@ -29,7 +32,8 @@ export const ExerciseProvider = (props) => {
 export const ExerciseDetailProvider = (props) => {
   const [exerciseDetail, setExerciseDetail] = useState({});
   const { exerciseId } = props;
-
+  
+  // Fetch exercises from the service when the component mounts
   useEffect(() => {
     const fetchExerciseDetailData = async () => {
       const fetchedExerciseDetail = await fetchExerciseDetail(exerciseId);
@@ -42,6 +46,7 @@ export const ExerciseDetailProvider = (props) => {
     }
   }, [exerciseId]);
 
+  // Render the ExerciseContext.Provider with the fetched exercises
   return (
     <ExerciseDetailContext.Provider value={exerciseDetail}>
       {props.children}

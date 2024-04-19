@@ -1,5 +1,10 @@
 import { HOST, PORT } from "../config/config";
 
+/**
+ * Validates the token by sending it to the server for verification.
+ * @param {string} token - The token to be validated.
+ * @returns {Promise<boolean>} A promise that resolves to true if the token is valid, false otherwise.
+ */
 export const validateToken = async (token) => {
   try {
     const response = await fetch('http://localhost:4000/user/validateToken', {
@@ -22,6 +27,17 @@ export const validateToken = async (token) => {
   }
 };
 
+/**
+ * Sends a registration request to the server.
+ * @param {string} username - The username for registration.
+ * @param {string} password - The password for registration.
+ * @param {string} userType - The type of user for registration.
+ * @param {string} country - The country for registration.
+ * @param {string} language - The language for registration.
+ * @param {string} description - The description for registration.
+ * @param {string} zoomLink - The Zoom link for registration.
+ * @returns {Promise<{ response: Response, data: any }>} A promise that resolves to an object containing the server response and data.
+ */
 export const fetchRegister = async (username, password, userType, country, language, description, zoomLink) => {
   try {
     const response = await fetch(`http://${HOST}:${PORT}/user/register`, {

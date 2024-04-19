@@ -1,6 +1,11 @@
 import React from 'react';
 import { useNavigate} from 'react-router-dom';
 
+/**
+ * Login component displays the login and register buttons.
+ * It provides functionality to navigate to the login and register pages.
+ * @returns {JSX.Element} Login component UI
+ */
 export const Login = () => {
   const navigate = useNavigate();
   const handleLogin = () => {

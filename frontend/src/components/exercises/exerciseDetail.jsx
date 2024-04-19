@@ -1,6 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { ExerciseDetailContext } from '../../contexts/exerciseContext';
 
+/**
+ * ExerciseDetail component displays details of an exercise including questions and allows users to answer and check their answers.
+ */
 const ExerciseDetail = ({ exercise }) => {
   const exerciseDetailContext = useContext(ExerciseDetailContext);
   const exerciseDetail = exercise || exerciseDetailContext;
@@ -10,9 +13,13 @@ const ExerciseDetail = ({ exercise }) => {
   } 
   const [userAnswers, setUserAnswers] = useState(initialUserAnswers);
   const [showResults, setShowResults] = useState(false);
+
+  // If exercise detail is not available, display loading
   if (!exerciseDetail.id) {
     return <div>Loading...</div>;
   }
+
+  // Mapped data for easier access
   const mappedData = {
     id: exerciseDetail.id,
     name: exerciseDetail.name,
@@ -20,12 +27,14 @@ const ExerciseDetail = ({ exercise }) => {
     questions: exerciseDetail.questions,
   };
 
+  // Handler to update user answers
   const handleChange = (index, event) => {
     const newAnswers = [...userAnswers];
     newAnswers[index] = event.target.value;
     setUserAnswers(newAnswers);
   };
 
+  // Function to check user answers against correct answers
   const checkAnswers = () => {
     const correctAnswers = mappedData.questions.map(question => question.answer);
     const result = userAnswers.map((answer, index) => answer.toLowerCase() === correctAnswers[index].toLowerCase());

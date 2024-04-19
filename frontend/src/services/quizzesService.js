@@ -1,5 +1,9 @@
 import { HOST, PORT } from "../config/config";
 
+/**
+ * Fetches all quizzes from the server.
+ * @returns {Promise<Array>} A promise that resolves to an array of quiz objects.
+ */
 export const fetchQuizzes = async () => {
     try {
       const response = await fetch(`http://${HOST}:${PORT}/quizzes`);
@@ -19,8 +23,13 @@ export const fetchQuizzes = async () => {
       return [];
     }
   };
-  
-  export const fetchQuizzesDetail = async (quizId) => {
+
+/**
+ * Fetches details of a specific quiz from the server.
+ * @param {string} quizId - The ID of the quiz to fetch details for.
+ * @returns {Promise<Object|null>} A promise that resolves to the quiz object if found, otherwise null.
+ */
+export const fetchQuizzesDetail = async (quizId) => {
     try {
       const response = await fetch(`http://${HOST}:${PORT}/quizzes/${quizId}`);
       const data = await response.json();

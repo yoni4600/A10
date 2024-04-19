@@ -1,9 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HOST, PORT } from "../config/config";
+
+/**
+ * Navbar component renders a navigation bar with logout, home, and return buttons.
+ * It uses useNavigate hook from react-router-dom for navigation.
+ */
 const Navbar = () => {
   const navigate = useNavigate();
   
+  // Function to handle logout
   async function logoutHandler() {
     try {
       const response = await fetch(`http://${HOST}:${PORT}/user/logout`, {
@@ -21,11 +27,13 @@ const Navbar = () => {
       console.error('Network error:', error.message);
     }
   }
-  
+
+  // Function to navigate back
   function returnHandler() {
     navigate(-1);
   }
 
+  // Function to navigate to home page
   function navigateHome() {
     navigate('/Home');
   }
