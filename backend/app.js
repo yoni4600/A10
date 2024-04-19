@@ -16,6 +16,9 @@ export function createApp(client) {
 
     // Use application-level middleware for common functionality
     app.use(cors({
+        origin: '*',
+        methods: '*',
+        allowedHeaders: ['Content-Type', 'Authorization'],
         credentials: true // Allow credentials (cookies)
     }));
 
