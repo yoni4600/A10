@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HOST, PORT } from "../config/config";
+import Cookies from 'js-cookie';
 
 /**
  * Navbar component renders a navigation bar with logout, home, and return buttons.
@@ -11,21 +12,8 @@ const Navbar = () => {
   
   // Function to handle logout
   async function logoutHandler() {
-    try {
-      const response = await fetch(`https://${HOST}:${PORT}/user/logout`, {
-        method: 'POST',
-        credentials: 'include' // Include cookies in the request
-      });
-      if (response.ok) {
-        navigate('/');
-      } else {
-        // Handle error response
-        console.error('Logout failed:', response.statusText);
-      }
-    } catch (error) {
-      // Handle network errors
-      console.error('Network error:', error.message);
-    }
+    Cookies.remove('token');
+    navigate('/')
   }
 
   // Function to navigate back
