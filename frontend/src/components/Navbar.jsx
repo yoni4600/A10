@@ -14,7 +14,7 @@ const Navbar = () => {
     try {
       const response = await fetch(`https://${HOST}:${PORT}/user/logout`, {
         method: 'POST',
-        credentials: 'include'
+        credentials: 'include' // Include cookies in the request
       });
       if (response.ok) {
         navigate('/');
@@ -27,7 +27,7 @@ const Navbar = () => {
       console.error('Network error:', error.message);
     }
   }
-  
+
   // Function to navigate back
   function returnHandler() {
     navigate(-1);
