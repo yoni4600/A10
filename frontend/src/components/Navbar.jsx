@@ -14,7 +14,7 @@ const Navbar = () => {
     try {
       const response = await fetch(`https://${HOST}:${PORT}/user/logout`, {
         method: 'POST',
-        credentials: true
+        credentials: 'include'
       });
       if (response.ok) {
         navigate('/');
