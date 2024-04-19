@@ -54,7 +54,7 @@ const App = () => {
     }
   }, [cookies.token]);
   
-  const Layout = () => {
+  const Layout = () => { 
     const location = useLocation();
     return (
       <>
