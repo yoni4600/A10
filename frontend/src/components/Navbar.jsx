@@ -14,7 +14,7 @@ const Navbar = () => {
     try {
       const response = await fetch(`https://${HOST}:${PORT}/user/logout`, {
         method: 'POST',
-        credentials: 'include' // Include cookies in the request
+        credentials: true
       });
       if (response.ok) {
         navigate('/');
