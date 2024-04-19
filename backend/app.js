@@ -16,7 +16,7 @@ export function createApp(client) {
 
     // Use application-level middleware for common functionality
     app.use(cors({
-        origin: ['https://a10-frontend-lac.vercel.app'],
+        origin: ['https://a10-frontend-lac.vercel.app/home'],
         credentials: true // Allow credentials (cookies)
     }));
 
