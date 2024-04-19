@@ -15,22 +15,13 @@ export function createApp(client) {
     const app = express();
 
     // Use application-level middleware for common functionality
-    // List of allowed origins for flexibility if needed
-    const allowedOrigins = ['https://a10-frontend-lac.vercel.app'];
-
-    const corsOptions = {
-        origin: function (origin, callback) {
-            if (allowedOrigins.includes(origin) || !origin) {
-            // Allow requests with no origin (like mobile apps or curl requests)
-            callback(null, true);
-            } else {
-            callback(new Error('Not allowed by CORS'));
-            }
-        },
-        credentials: true, // Required to send cookies and use with credentials mode
-    };
-
-    app.use(cors(corsOptions));
+    app.use(cors({
+        origin: ['https://a10-frontend-lac.vercel.app',
+                'https://a10-frontend-lac.vercel.app/lessons',
+                'https://a10-frontend-lac.vercel.app/exercises',
+                'https://a10-frontend-lac.vercel.app/home'],
+        credentials: true // Allow credentials (cookies)
+    }));
 
     app.use(express.json()); // Parse JSON bodies
     
