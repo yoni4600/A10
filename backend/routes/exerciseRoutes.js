@@ -3,6 +3,11 @@ import { getAllExercises, getExerciseById } from '../controllers/exerciseControl
 
 const router = express.Router();
 
+/**
+ * Defines routes related to exercises.
+ * @param {object} client - The MongoDB client object.
+ * @returns {object} Express router for exercise routes.
+ */
 export function exerciseRoutes(client) {
     // Pass the MongoDB client to the controller
     router.get('/', (req, res) => getAllExercises(req, res, client));
