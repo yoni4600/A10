@@ -13,6 +13,11 @@ body {
     color: #ffffff;
 }
 
+.dark input {
+    background-color: #333333;
+    color: #ffffff;
+}
+
 .dark body {
     background-color: #333333;
     color: #ffffff;
