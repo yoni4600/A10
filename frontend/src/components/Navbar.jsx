@@ -27,7 +27,7 @@ const Navbar = () => {
       console.error('Network error:', error.message);
     }
   }
-
+  
   // Function to navigate back
   function returnHandler() {
     navigate(-1);
