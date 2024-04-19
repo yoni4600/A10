@@ -7,7 +7,7 @@ import { HOST, PORT } from "../config/config";
  */
 export const validateToken = async (token) => {
   try {
-    const response = await fetch(`http://${HOST}:${PORT}/user/validateToken`, {
+    const response = await fetch(`https://${HOST}:${PORT}/user/validateToken`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ export const fetchRegister = async (username, password, userType, country, langu
 
 export const fetchLogin = async (username, password) => {
   try {
-    const response = await fetch(`http://${HOST}:${PORT}/user/login`, {
+    const response = await fetch(`https://${HOST}:${PORT}/user/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
