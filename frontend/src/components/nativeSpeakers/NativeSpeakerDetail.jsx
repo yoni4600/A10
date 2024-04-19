@@ -3,6 +3,7 @@ import { NativeSpeakerDetailContext } from '../../contexts/nativeSpeakerContext'
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { jwtDecode } from "jwt-decode";
+import { HOST, PORT } from "../../config/config"
 
 /**
  * NativeSpeakerDetail component is responsible for rendering the details of a native speaker.
@@ -63,7 +64,7 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
   const handleToggleChange = () => {
     const newToggleValue = !toggleChecked; // Toggle the state
     // Make API call to update availability status
-    fetch('http://localhost:4000/user/updateAvailability', {
+    fetch(`http://${HOST}:${PORT}/user/updateAvailability`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
