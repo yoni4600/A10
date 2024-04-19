@@ -3,16 +3,21 @@ import { NativeSpeakerDetailContext } from '../../contexts/nativeSpeakerContext'
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { jwtDecode } from "jwt-decode";
-// import { fetchNativeSpeakersDetail } from '../../services/nativeSpeakerService';
 
 const NativeSpeakerDetail = ({ nativeSpeaker }) => {
   const nativeSpeakersDetailContext = useContext(NativeSpeakerDetailContext);
   const nativeSpeakersDetail = nativeSpeaker || nativeSpeakersDetailContext;
   const navigate = useNavigate();
   const [cookies] = useCookies(['token']);
-  const decodedToken = jwtDecode(cookies.token);
-  const userType = decodedToken.userType;
-  console.log("this user is:", userType);
+  let userType = ''; // Initialize username
+  let decodedToken = ''
+  let sessionUserName = ''
+  // Decode token if available
+  if (cookies.token) {
+    decodedToken = jwtDecode(cookies.token);
+    userType = decodedToken.userType;
+    sessionUserName = decodedToken.username
+  }
   const [toggleChecked, setToggleChecked] = useState(() => {
     // Get the toggle state from localStorage if available, otherwise default to false
     return localStorage.getItem('toggleChecked') === 'true';
@@ -22,7 +27,6 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
 
   useEffect(() => {
     setLoading(false); // Set loading to false when component mounts
-    // setNativeSpeakerData(fetchNativeSpeakersDetail(decodedToken.id));
   }, []);
 
   // Update localStorage when toggle state changes
@@ -44,21 +48,17 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
     description: nativeSpeakersDetail.description,
     zoomLink: nativeSpeakersDetail.zoomLink,
   };
-
   const handleBackBtn = () => {
     navigate('/nativeSpeakers');
   };
 
   const handleToggleChange = () => {
-    console.log(toggleChecked)
     const newToggleValue = !toggleChecked; // Toggle the state
-    console.log(newToggleValue)
     // Make API call to update availability status
     fetch('http://localhost:4000/user/updateAvailability', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // Authorization: `Bearer ${cookies.token}` // Include JWT token in headers
       },
       body: JSON.stringify({
         username: decodedToken.username,
@@ -89,7 +89,7 @@ const NativeSpeakerDetail = ({ nativeSpeaker }) => {
               <h2 className="text-xl font-semibold mb-4">{mappedData.username}</h2>
               <h3 className="text-lg font-semibold mb-2">Native Speaker Details:</h3>
               {/* Render toggle button if user is a native speaker */}
-              {userType === 'NativeSpeaker' && (
+              {mappedData.username == sessionUserName && (
                 <button
                   className={`bg-gray-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded ${toggleChecked ? 'bg-blue-500' : 'bg-gray-300'}`}
                   onClick={handleToggleChange}

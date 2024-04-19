@@ -1,9 +1,9 @@
-// import { HOST, PORT } from "../config/config";
+import { HOST, PORT } from "../config/config";
 
 export const fetchNativeSpeakers = async () => {
     try {
       // const response = await fetch(`https://${HOST}:${PORT}/nativeSpeakers`);
-      const response = await fetch(`http://localhost:4000/nativeSpeakers`);
+      const response = await fetch(`http://${HOST}:${PORT}/nativeSpeakers`);
 
       const data = await response.json();
   
@@ -26,7 +26,7 @@ export const fetchNativeSpeakers = async () => {
   
   export const fetchNativeSpeakersDetail = async (nativeSpeakerId) => {
     try {
-      const response = await fetch(`http://localhost:4000/user/${nativeSpeakerId}`);
+      const response = await fetch(`http://${HOST}:${PORT}/user/${nativeSpeakerId}`);
       const data = await response.json();
   
       if (!data) {

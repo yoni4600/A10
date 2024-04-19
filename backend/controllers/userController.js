@@ -1,7 +1,5 @@
-import { ObjectId } from 'mongodb';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-
 
 export async function loginUser(req, res, client) {
     try {
@@ -84,7 +82,6 @@ export async function registerUser(req, res, client) {
 
         // If user type is "NativeSpeaker", add additional attributes
         if (userType === 'NativeSpeaker') {
-            console.log('User type is NativeSpeaker'); // Add this logging statement
             newUser = {
                 ...newUser,
                 country,

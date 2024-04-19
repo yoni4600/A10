@@ -22,7 +22,6 @@ const Navbar = () => {
     }
   }
   
-  
   function returnHandler() {
     navigate(-1);
   }

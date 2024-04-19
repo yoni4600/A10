@@ -11,7 +11,6 @@ const NativeSpeakerDetailWrapper = () => {
   if (passedNativeSpeaker) {
     return <NativeSpeakerDetail nativeSpeaker={passedNativeSpeaker} />;
   } else {
-    console.log("this is else", id)
     return (
       <NativeSpeakerDetailProvider nativeSpeakerId={id}>
         {/* Pass lesson prop as null since it's not available */}

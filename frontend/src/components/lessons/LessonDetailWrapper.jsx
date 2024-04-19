@@ -11,10 +11,8 @@ const LessonDetailWrapper = () => {
   if (passedLesson) {
     return <LessonDetail lesson={passedLesson} />;
   } else {
-    console.log("this is else", id)
     return (
       <LessonDetailProvider lessonId={id}>
-        {/* Pass lesson prop as null since it's not available */}
         <LessonDetail lesson={null} />
       </LessonDetailProvider>
     );

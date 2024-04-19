@@ -11,7 +11,6 @@ export const validateToken = async (token) => {
     });
     const data = await response.json();
     if (response.ok) {
-      console.log('Token is valid');
       return true;
     } else {
       console.error('Token validation failed:', data.error);
